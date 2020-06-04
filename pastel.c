@@ -3,7 +3,7 @@
 #include <graphics.h>
 #include "pastel.h"
 
-void rellenar_pastel(int pattern,int a, int b, int c){
+void rellenar_pastel(int pattern, int a, int b, int c){
     //Establece el relleno y contorno de una figura
     setcolor(COLOR(a,b,c));
     setfillstyle(pattern , COLOR(a,b,c));
@@ -23,7 +23,7 @@ void animacion_pastel(int x, int y, int inicio, int final, int radio){
 }
 
 
-void texto_pastel(int x, int y, char *imp_1, float porc, char *imp_2, int val, int a, int b, int c){
+void texto_pastel(int x, int y, const char *imp_1, float porc, const char *imp_2, int val, int a, int b, int c){
 
     char texto[25];
 
