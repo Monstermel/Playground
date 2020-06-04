@@ -1,8 +1,14 @@
+
 #include <stdio.h>
 #include <winbgim.h>
 #include <graphics.h>
+#include <stdarg.h>
+
 #include "pastel.h"
+#include "barras.h"
 #include "cuadricula.h"
+
+
 
 //Problema encontrado: todas las funciones que usen una ventana grafica deben de poder crearla si no esta no existe
 //ademas si ya existe una trabajar en ella, investigar como hacer eso
