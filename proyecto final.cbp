@@ -45,13 +45,17 @@
 			<Add library="ole32" />
 			<Add directory="$(CODEBLOCKS)\sdk\winbgim\lib" />
 		</Linker>
-		<Unit filename="main.c">
+		<Unit filename="barras.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="barras.h" />
 		<Unit filename="cuadricula.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cuadricula.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="pastel.c">
 			<Option compilerVar="CC" />
 		</Unit>

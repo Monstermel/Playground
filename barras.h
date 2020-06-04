@@ -1,0 +1,6 @@
+#ifndef BARRAS_H_INCLUDED
+#define BARRAS_H_INCLUDED
+
+
+
+#endif // BARRAS_H_INCLUDED
