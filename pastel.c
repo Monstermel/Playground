@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <winbgim.h>
 #include <graphics.h>
+
 #include "pastel.h"
 
 void rellenar_pastel(int pattern, int a, int b, int c){
-    //Establece el relleno y contorno de una figura
+    //Establece el relleno y contorno del pastel
     setcolor(COLOR(a,b,c));
     setfillstyle(pattern , COLOR(a,b,c));
 
@@ -44,29 +45,25 @@ void texto_pastel(int x, int y, const char *imp_1, float porc, const char *imp_2
 void graficos_pastel(long long total, long long a, long long b){
 
     initwindow(1280,720,"Graficos de pastel");
-    setbkcolor(COLOR(230,230,230));
+    setbkcolor(COLOR(250,250,250));
     cleardevice();
 
-    int radio = 200;
-    int x = getmaxx()/2;
-    int y = getmaxy()/2;
-    int angulo_a = (int)((a*360LL)/total);
-    int angulo_b = (int)((b*360LL)/total);
 
-    float aux_1, aux_2, aux_3;
-    aux_1 = (float)total;
-    aux_2 = (float)a;
-    aux_3 = (float)b;
-    float porc_a = (float)((aux_2*100.00)/aux_1);
-    float porc_b = (float)((aux_3*100.00)/aux_1);
+    short x = (short)(getmaxx()/2);
+    short y = (short)(getmaxy()/2);
+    unsigned char radio = 200;
 
-    //Revisar si en serio se necesita while
-    while((angulo_a+angulo_b)!=360){
+    //Valores entre [0,360]
+    short ultimo_angulo = 90;
+    short angulo_a = (short)((a*360LL)/total);
+    short angulo_b = (short)((b*360LL)/total);
+    if((angulo_a+angulo_b)!=360){
         //Correccion de numeros decimales
         angulo_a++;
     }
 
-    int ultimo_angulo = 90;
+    float porc_a = 100.00 * (a/(float)total);
+    float porc_b = 100.00 * (b/(float)total);
 
     //Se rellena la parte de b
     rellenar_pastel(SOLID_FILL,255,133,0);
@@ -88,7 +85,10 @@ void graficos_pastel(long long total, long long a, long long b){
     settextjustify(LEFT_TEXT , CENTER_TEXT);
 
     //Se imprime el titulo
-    texto_pastel(x+60, y-150, "Casos totales:", 0, "    %d", (int)total, 0, 0, 0);
+    texto_pastel(x-50, y-250, "Titulo", 0.0, "", 0, 250,250,250);
+
+    //Se imprime los casos totales
+    texto_pastel(x+60, y-150, "Casos totales:", 0.0, "    %d", (int)total, 0, 0, 0);
 
     //Se imprime el texto de a
     texto_pastel(x+60, y-50, "Casos positivos (%.2f%%):", porc_a, "    %d", (int)a, 0, 89, 255);
