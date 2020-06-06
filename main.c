@@ -10,25 +10,30 @@
 
 
 
-//Problema encontrado: todas las funciones que usen una ventana grafica deben de poder crearla si no esta no existe
-//ademas si ya existe una trabajar en ella, investigar como hacer eso
-
 int main(void){
 
-    //Programa driver
-    long long total;
-    long long positivos;
-    long long negativos;
+    //DRIVER DE BARRAS
+    unsigned int casos[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
+    graficos_barras("Hola mundo", 10, casos);
+
+
+    /*
+    // DRIVER DE PASTEL
+
+    int total;
+    int positivos;
+    int negativos;
 
     printf("Casos totales: ");
-    scanf("%lld",&total);
+    scanf("%d",&total);
     printf("Casos positivos: ");
-    scanf("%lld",&positivos);
+    scanf("%d",&positivos);
     negativos = total - positivos;
-    printf("Casos negativos: %lld\n", negativos);
+    printf("Casos negativos: %d\n", negativos);
     graficos_pastel(total, positivos, negativos);
-    mostrar_cuadricula(8);
+    */
+
 
     system("pause");
 
