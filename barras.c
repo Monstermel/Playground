@@ -52,7 +52,6 @@ void impresion_lineas(int max, int y_long){
 
 }
 
-
 void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsigned int *casos){
 
     //Cntd es como un contador, cada elemento i aumenta
@@ -83,16 +82,46 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsign
     int bottom = getmaxy()-100;
     int pts[10];
 
-    //Establecemos el estilo de las barras
-    setcolor(COLOR(0, 58, 255));
+    //Variable para el texto
+    char texto[6];
+
+    //Establecemos el estilo de las
+    //barras, lineas y texto
     setfillstyle(1, COLOR(0, 58, 255));
+    setlinestyle(SOLID_LINE, 0, 1);
+    settextstyle(BOLD_FONT, 0, 1);
+    settextjustify(1, 0);
 
-    //Este for controla cuantos aumentos hay
+    //Esyablecemos el color del texto y
+    //diujamos todo lo estatico
+    setcolor(0);
+    outtextxy(50, bottom+30, "Dia:");
+    line(100,getmaxy()-100,getmaxx()-100, getmaxy()-100);
+
+    for(size_t j = 0; j < dias; j++){
+
+        left += prtc_2;
+        right = left + 4 * prtc_2;
+
+        //Numeros
+        sprintf(texto,"%d",j+1);
+        outtextxy(left+(right-left)/2, bottom+30, texto);
+
+        left += 5 * prtc_2;
+
+    }
+
+    //Restablecemos la variable left
+    left = 100;
+
+    //Disbujamos las barras
+    setcolor(COLOR(0, 58, 255));
+
     for(size_t i = 0; i < max; i++){
+    //Este for aumenta la altura de cada barra
 
-        //Este for imprime cada barra
         for(size_t j = 0; j < dias; j++){
-
+        //Este for imprime cada barra
             cntd[j]++;
 
             if(cntd[j]>casos[j]){
@@ -110,24 +139,20 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsign
             //Primer punto
             pts[0] = left;
             pts[1] = top;
-
             //Segundo punto
             pts[2] = right;
             pts[3] = top;
-
             //Tercer punto
             pts[4] = right;
             pts[5] = bottom;
-
             //Cuarto punto
             pts[6] = left;
             pts[7] = bottom;
-
             //Punto de cierre
             pts[8] = left;
             pts[9] = top;
 
-
+            //Dibujamos la barra
             fillpoly(5, pts);
 
             //Sumamos 5 prtcs_2's por que partimos
@@ -137,16 +162,14 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsign
             left+= 5 * prtc_2;
 
         }
+
         left = 100;
-        delay(10);
     }
+
     free(cntd);
     return;
 
 }
-
-
-
 
 void graficos_barras(const char *texto, size_t dias, const unsigned int *casos){
 
@@ -180,10 +203,7 @@ void graficos_barras(const char *texto, size_t dias, const unsigned int *casos){
     impresion_lineas(max, y_long);
     impresion_barras(prtc_2, max, y_long, dias, casos);
 
-    //Dibujamos la linea de la base
-    setcolor(0);
-    setlinestyle(SOLID_LINE, 0, 1);
-    line(100,getmaxy()-100,getmaxx()-100, getmaxy()-100);
+
 
 
     return;
