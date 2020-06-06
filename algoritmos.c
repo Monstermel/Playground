@@ -26,15 +26,16 @@ int int_pow(int n, unsigned int m){
 
 unsigned int integer_round(unsigned int n){
 
-    int potenc = digit_count(n) - 2;
+    int potencia = digit_count(n) - 2;
 
-	if (potenc < 0){
+	if (potencia < 0){
 		//Este if es para que numeros como 1 se redonde a 5
 		//y que 8 se redonde a 10
-		potenc = 0;
+		potencia = 0;
 	}
 
-	unsigned int cmp = 5 * int_pow(10, potenc);
+    //Variable de comparacion
+	unsigned int cmp = 5 * int_pow(10, potencia);
 
     while (n % cmp != 0){
         n++;
