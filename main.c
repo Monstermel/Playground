@@ -13,7 +13,7 @@
 int main(void){
 
     //DRIVER DE BARRAS
-    unsigned int casos[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    unsigned int casos[10] = {967, 568, 389, 589, 523, 634, 767, 879, 243, 938};
 
     graficos_barras("Hola mundo", 10, casos);
 
