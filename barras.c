@@ -12,20 +12,65 @@ unsigned int altura(unsigned int n, unsigned int max, unsigned int y){
     return (n*y)/max;
 }
 
+void impresion_lineas(int max, int y_long){
+
+
+    int potencia = digit_count(max) - 3;
+
+	if (potencia < 0){
+		//Este if es para que numeros como 1 se redonde a 5
+		//y que 8 se redonde a 10
+		potencia = 0;
+	}
+
+	unsigned int cmp = 5 * int_pow(10, potencia); //comparacion
+
+    unsigned int alt; //altura
+    const unsigned int _buffer_max = max;
+
+    const int left = 100;
+    const int right = getmaxx()-100;
+    const int bottom = getmaxy()-100;
+    setcolor(COLOR(200, 200, 200));
+    setlinestyle(DOTTED_LINE, 0, 1);
+
+    char texto[10];
+
+    while(max){
+
+        alt = altura(max, _buffer_max, y_long);
+
+
+        sprintf(texto,"%u",max);
+        settextstyle(BOLD_FONT, 0, 1);
+        settextjustify(2, 1);
+        outtextxy(left, bottom-alt, texto);
+
+        line(left, bottom-alt, right, bottom-alt);
+        max -= cmp;
+    }
+
+}
+
+
 void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsigned int *casos){
 
+    //Cntd es como un contador, cada elemento i aumenta
+    //mientra sea menor al elemento i en casos
     unsigned int *cntd;
+
+    //Declaramos memoria con todos sus bits establecidos en 0
     cntd = (unsigned int *)calloc(dias, sizeof(unsigned int));
 
     //Error handling
     if(cntd == NULL){
-        printf("\nERROR**Solucionando\n");
+        printf("\n\tERROR**Solucionando\n");
         size_t errores = 0;
         do{
             errores++;
             cntd = (unsigned int *)calloc(dias, sizeof(unsigned int));
-            if(10 <= errores){
-                printf("ERROR**Cerrando programa\n");
+            if(10 < errores){
+                printf("\tERROR**Cerrando programa\n");
                 exit(1);
             }
         }while(cntd == NULL);
@@ -45,11 +90,15 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsign
     //Este for controla cuantos aumentos hay
     for(size_t i = 0; i < max; i++){
 
+        //Este for imprime cada barra
         for(size_t j = 0; j < dias; j++){
 
             cntd[j]++;
 
             if(cntd[j]>casos[j]){
+                //Si la barra ya se termino de imprimir
+                //actualizamos left para la siguiente barra
+                //y nos saltamos esta iteracion
                 left += 6 * prtc_2;
                 continue;
             }
@@ -91,6 +140,9 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t dias, const unsign
         left = 100;
         delay(10);
     }
+    free(cntd);
+    return;
+
 }
 
 
@@ -125,12 +177,13 @@ void graficos_barras(const char *texto, size_t dias, const unsigned int *casos){
     }
     max = integer_round(max);
 
+    impresion_lineas(max, y_long);
     impresion_barras(prtc_2, max, y_long, dias, casos);
 
     //Dibujamos la linea de la base
     setcolor(0);
+    setlinestyle(SOLID_LINE, 0, 1);
     line(100,getmaxy()-100,getmaxx()-100, getmaxy()-100);
-    line(100,100,100,getmaxy()-100);
 
 
     return;
