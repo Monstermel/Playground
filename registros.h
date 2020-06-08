@@ -5,6 +5,8 @@
 //pero he notado que varia como lo definen asi que
 //mejor lo defino yo para que no haya problemas
 typedef unsigned char _uint_8;
+typedef unsigned int _uint;
+//Revisar que el compilador que uso en codeblocks no tenga problemas con estas declaraciones
 
 enum Disponibilidad {
     Borrado,
@@ -48,15 +50,15 @@ enum Estados {
 };
 
 typedef struct Estado {
-    _uint_8 estado;
+    _uint_8 borrado:1;
+    _uint_8 estado:7;
     char descripcion[100];
     int poblacion;
-    _uint_8 borrado;
 } Estado;
 ////////////////////////
 
 //DEFINICIONES PERSONA
-enum Genero {
+enum Generos {
     Femenino,
     Masculino,
     Otro
@@ -77,32 +79,33 @@ typedef struct Domicilio {
 } Domicilio;
 
 typedef struct Persona {
-    char num_SS[12];//Numero de seguro social
+    //Numero de seguro social
+    char num_SS[12];
     Nombre nombre;
     Domicilio domicilio;
     _uint_8 edad;
-    _uint_8 genero;
-    _uint_8 borrado;
+    _uint_8 genero:7;
+    _uint_8 borrado:1;
 } Persona;
 ///////////////////////
 
-//ESTRUCTURAS CASOS
-enum Covid {
+//DEFINICIONES CASOS
+enum Covid_19 {
     negativo,
     positivo
 };
 
 typedef struct Fecha {
-	unsigned int dia:5;
-	unsigned int mes:4;
-	unsigned int anio:23;
+    _uint dia : 5;
+    _uint mes : 4;
+    _uint anio : 23;
 } Fecha; 
 
 typedef struct Caso{
-    _uint_8 estado;
     char no_SS[12];
+    _uint_8 estado:7;
+    _uint_8 covid:1;
     Fecha fecha;
-    _uint_8 confirmado;
 } Caso;
 //////////////////////
 
