@@ -179,6 +179,10 @@ void graficos_barras(const char *texto, size_t inicio, size_t final, size_t tama
     setbkcolor(COLOR(250,250,250));
     cleardevice();
 
+    setcolor(0);
+    settextstyle(BOLD_FONT, 0, 3);
+    settextjustify(1, 0);
+    outtextxy(100+(getmaxx()-200)/2, 50, texto);
 
     //Marco coords (100, 100, getmaxx()-100, getmaxy()-100).
 
