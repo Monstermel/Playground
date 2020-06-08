@@ -64,6 +64,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pastel.h" />
+		<Unit filename="registros.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="registros.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
