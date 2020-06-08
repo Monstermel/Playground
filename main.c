@@ -16,7 +16,7 @@ int main(void){
     //                         1    2    3    4    5    6    7    8    9    10
     unsigned int casos[10] = {134, 234, 387, 99, 500, 951, 500, 500, 500, 100};
 
-    graficos_barras("Hola mundo", 1, 10, 10, casos);
+    graficos_barras("Titulo", 1, 10, 10, casos);
 
 
     /*
