@@ -36,7 +36,7 @@ enum Estados {
     Nuevo_leon,
     Oaxaca,
     Puebla,
-    Querétaro,
+    Queretaro,
     Quintana_roo,
     San_luis_potosi,
     Sinaloa,
