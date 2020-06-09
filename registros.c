@@ -9,7 +9,7 @@
 #define F_CASOS "registros/casos.dat"
 
 
-_uint_8 captura_estadoID(void) {
+_uint_8 captura_estadoID(void){
     int buffer;
     printf("*Covid-19\n");
     printf(" 1) Aguascalientes\n");
@@ -56,7 +56,7 @@ _uint_8 captura_estadoID(void) {
     return (_uint_8)(buffer--);
 }
 
-Estado registrar_estado(void) {
+Estado registrar_estado(void){
 
     Estado buffer_estado;
     buffer_estado.estado = captura_estadoID();
@@ -76,15 +76,15 @@ char* generar_numSS(void) {
     /*Codigo*/
 }
 
-Nombre captura_nombre(void) {
+Nombre captura_nombre(void){
     /*Codigo*/
 }
 
-Domicilio captura_domicilio(void) {
+Domicilio captura_domicilio(void){
     /*Codigo*/
 }
 
-_uint_8 captura_Genero(void) {
+_uint_8 captura_genero(void){
     /*Codigo*/
 }
 
@@ -119,7 +119,7 @@ Persona registrar_persona(void){
     }
     buffer_persona.edad = (_uint_8)buffer_edad;
 
-    buffer_persona.genero = captura_Genero();
+    buffer_persona.genero = captura_genero();
 
     //Comprobador:
     printf("\nPersona agregada:\n");
@@ -132,7 +132,7 @@ Persona registrar_persona(void){
     return buffer_persona;
 }
 
-char* capturar_numSS(void) {
+char* capturar_numSS(void){
     char buffer[12];
     
     printf("No. seguro social (11 digitos): ");
@@ -332,7 +332,7 @@ void imprimir_Caso(Caso imp){
     return;
 }
 
-Caso registrar_caso() {
+Caso registrar_caso(void){
     Caso buffer_caso;
     strcpy(buffer_caso.no_SS, capturar_numSS());
     buffer_caso.estado = captura_estadoID();
@@ -344,7 +344,7 @@ Caso registrar_caso() {
     return buffer_caso;
 }
 
-void guardar_estado(void){
+void nuevo_estado(void){
 
     FILE *fp_estado;
 
@@ -372,7 +372,7 @@ void guardar_estado(void){
 
 }
 
-void guardar_persona(void){
+void nueva_persona(void){
 
     FILE *fp_persona;
 
@@ -398,7 +398,7 @@ void guardar_persona(void){
     return;
 }
 
-void guardar_caso(void){
+void nuevo_caso(void){
 
     FILE *fp_caso;
 
@@ -426,7 +426,7 @@ void guardar_caso(void){
     }
 }
 
-int buscar_estado(_uint_8 ID, int *registro) {
+int buscar_estado(_uint_8 ID, int *registro){
     FILE *fp_estados;
     int encontrado = 0;
     *registro = 0;
@@ -456,8 +456,7 @@ int buscar_estado(_uint_8 ID, int *registro) {
     return encontrado;
 }
 
-int buscar_persona(const char *No_SS, int *registro)
-{
+int buscar_persona(const char *No_SS, int *registro){
     FILE *fp_persona;
     int encontrado = 0;
     *registro = 0;
@@ -487,8 +486,7 @@ int buscar_persona(const char *No_SS, int *registro)
     return encontrado;
 }
 
-int buscar_caso_PN(int *registro)
-{
+int buscar_caso_PN(int *registro){
     FILE *fp_casos;
     Caso buffer;
     memset(registro, 0, 2*sizeof(int));
@@ -517,8 +515,7 @@ int buscar_caso_PN(int *registro)
     return 1;
 }
 
-int buscar_casos_Estado(_uint_8 ID, int **registro)
-{
+int buscar_casos_Estado(_uint_8 ID, int **registro){
     FILE *fp_casos;
     int encontrado = 0, pocision = 0;
     int *tp;

@@ -111,6 +111,47 @@ typedef struct Caso{
 
 
 
+//FUNCIONES DE IMPRESION
+void imprimir_Caso(Caso imp);
+void imprimir_fecha(Fecha imp);
+void imprimir_covid(_uint_8 imp);
+void imprimir_estado(_uint_8 imp);
+void imprimir_Genero( _uint_8 imp);
+void imprimir_Domicilio(Domicilio imp);
+void imprimir_Nombre(Nombre imp);
+////////////////////////
+
+
+//FUNCIONES DE CAPTURA
+_uint_8 capturar_covid(void);
+Fecha capturar_fecha(void);
+char* capturar_numSS(void);
+_uint_8 captura_genero(void);
+Domicilio captura_domicilio(void);
+Nombre captura_nombre(void);
+_uint_8 captura_estadoID(void);
+////////////////////////
+
+//FUNCIONES DE REGISTRO
+Caso registrar_caso(void);
+Persona registrar_persona(void);
+Estado registrar_estado(void);
+//////////////////////
+
+//FUNCIONES DE CREACION
+void nuevo_caso(void);
+void nueva_persona(void);
+void nuevo_estado(void);
+///////////////////
+
+//FUNCIONES DE BUSQUEDA
+int buscar_casos_Estado(_uint_8 ID, int **registro);
+int buscar_caso_PN(int *registro);//Positivos y negativos
+int buscar_persona(const char *No_SS, int *registro);
+int buscar_estado(_uint_8 ID, int *registro);
+///////////////////
+
+
 
 
 
