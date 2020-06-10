@@ -1,17 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
 #include "registros.h"
 
-#define F_ESTADOS "registros/estados.dat"
-#define F_PERSONAS "registros/personas.dat"
-#define F_CASOS "registros/casos.dat"
-
-
 _uint_8 captura_estadoID(void){
     int buffer;
-    printf("*Covid-19\n");
+    printf("*Estado: ");
     printf(" 1) Aguascalientes\n");
     printf(" 2) Baja California\n");
     printf(" 3) Baja California Sur\n");
@@ -72,93 +68,235 @@ Estado registrar_estado(void){
     return buffer_estado;
 }
 
+char* capturador_de_strings(const char *texto, size_t max_size){
+
+    char *aux = (char *)malloc(10 * sizeof(char));
+    int error = 0;
+    while (aux == NULL)
+    {
+        error++;
+        aux = (char *)malloc(10 * sizeof(char));
+        if (10 < error)
+        {
+            printf("ERROR GRAVE: Cerrando programa\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    printf(texto);
+    fflush(stdin);
+    gets(aux);
+    do
+    {
+        error = 0;
+        if (strlen(aux) != max_size)
+        {
+            error = 1;
+        }
+        for (size_t i = 0; i < strlen(aux) && !error; i++)
+        {
+            if (aux[i] < '0' || '9' < aux[i])
+            {
+                error = 1;
+            }
+        }
+        if (error)
+        {
+            printf("Opcion no valida!\n");
+            system("pause");
+            printf(texto);
+            fflush(stdin);
+            gets(aux);
+        }
+    } while (error);
+    return aux;
+}
+
 char* generar_numSS(void) {
-    /*Codigo*/
+    char *buffer = (char*)malloc(12*sizeof(char));
+    int error = 0;
+    while (buffer == NULL)
+    {
+        error++;
+        buffer = (char *)malloc(10 * sizeof(char));
+        if (10 < error)
+        {
+            printf("ERROR GRAVE: Cerrando programa\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    char *aux;
+    printf("*Generar no. seguro social\n");
+
+    //Primeros dos digitos
+    aux = capturador_de_strings("Id de la clinica del IMSS del paciente (2 digitos): ", 2);
+    strcpy(buffer,aux);
+    free(aux);
+
+    //tercer y cuarto digito
+    aux = capturador_de_strings("Ultimos dos digitos del año en que se dio de alta\n(2 digitos): ", 2);
+    srcat(buffer,aux);
+    free(aux);
+
+    //quinto y sexto digito
+    aux = capturador_de_strings("Ultimos dos digitos del año de nacimiento del paciente\n(2 digitos): ", 2);
+    srcat(buffer, aux);
+    free(aux);
+
+    //Ultimnos digitos
+    char tmp[12];
+    int paciente;
+    do{
+        strcpy(tmp, buffer);
+        error = 0;
+        aux = capturador_de_strings("Digite 5 digitos: ", 5);
+        srcat(tmp, aux);
+        free(aux);
+
+        if (buscar_persona(tmp,&paciente)){
+            error = 1;
+            printf("El paciente no.%d ya tiene este NSS\n", paciente+1);
+            printf("Cambie los ultimos 5 digitos\n");
+        }
+
+    }while(error);
+    srcpy(buffer, tmp);
+    return buffer;
 }
 
 Nombre captura_nombre(void){
-    /*Codigo*/
+    Nombre buffer;
+    printf("*Nombre completo\n");
+    printf("Apellido paterno: ");
+    fflush(stdin);
+    gets(buffer.apll_P);
+    printf("Apellido materno: ");
+    fflush(stdin);
+    gets(buffer.apll_M);
+    printf("Nombre: ");
+    fflush(stdin);
+    gets(buffer.nom);
+
+    return buffer;
 }
 
 Domicilio captura_domicilio(void){
-    /*Codigo*/
+    Domicilio buffer;
+    printf("*Domicilio\n");
+    printf("Calle: ");
+    fflush(stdin);
+    gets(buffer.calle);
+    printf("Numero: ");
+    fflush(stdin);
+    gets(buffer.numero);
+    printf("Colonia: ");
+    fflush(stdin);
+    gets(buffer.colonia);
+    printf("Municipio: ");
+    fflush(stdin);
+    gets(buffer.municipio);
+    buffer.estado = captura_estadoID();
+    return buffer;
+}
+
+_uint_8 capturar_edad(void){
+    int buffer;
+    printf("*Edad\n");
+    printf("Edad: ");
+    scanf("%d", &buffer);
+    while (buffer < 0 || 255 < buffer)
+    {
+        printf("Opcion no valida!\n");
+        system("pause");
+        printf("Tecleea la opcion requerida: ");
+        scanf("%d", &buffer);
+    }
+    return (_uint_8)(buffer);
 }
 
 _uint_8 captura_genero(void){
-    /*Codigo*/
+    int buffer;
+    printf("*Genero\n");
+    printf(" 1) Femenino\n");
+    printf(" 2) Masculino\n");
+    printf(" 3) Otro\n");
+    printf("Teclea la opcion requerida: ");
+    scanf("%d", &buffer);
+ 
+    while (buffer < 1 || 3 < buffer){
+        printf("Opcion no valida!\n");
+        system("pause");
+        printf("Tecleea la opcion requerida: ");
+        scanf("%d", &buffer);
+    }
+    return (_uint_8)(buffer--);
 }
 
-void imprimir_Nombre(Nombre imp)
-{
-    /*Codigo*/
+void imprimir_nombre(Nombre imp){
+    printf("Nombre: %s %s %s\n", imp.apll_P, imp.apll_M, imp.nom);
+    return;
 }
 
-void imprimir_Domicilio(Domicilio imp){
-    /*Codigo*/
+void imprimir_domicilio(Domicilio imp){
+    printf("Calle: %s\n", imp.calle);
+    printf("Numero: %s\n", imp.numero);
+    printf("Colonia: %s\n", imp.colonia);
+    printf("Municipio: %s\n", imp.municipio);
+    imprimir_estado(imp.estado);
 }
 
-void imprimir_Genero( _uint_8 imp){
-    /*Codigo*/
+void imprimir_numSS(const char *imp){
+    printf("No. seguro social: %s\n", imp);
+    return;
+}
+void imprimir_edad(_uint_8 imp){
+    printf("Edad: %d\n", imp);
+    return;
+}
+
+void imprimir_genero( _uint_8 imp){
+    if(imp == Femenino){
+        printf("Genero: Femenino\n");
+    }
+    else if(imp == Masculino){
+        printf("Genero: Masculino\n");
+    }
+    else if(imp == Otro){
+        printf("Genero: Otro\n");
+    }
+    return;
+}
+
+void imprimir_PERSONA(Persona imp){
+    imprimir_nombre(imp.nombre);
+    imprimir_domicilio(imp.domicilio);
+    imprimir_numSS(imp.num_SS);
+    imprimir_edad(imp.edad);
+    imprimir_genero(imp.genero);
+    return;
 }
 
 Persona registrar_persona(void){
-
     Persona buffer_persona;
-    strcpy(buffer_persona.num_SS, generar_numSS());
     buffer_persona.borrado = No_borrado;
+    char *aux = generar_numSS();
+    strcpy(buffer_persona.num_SS, aux);
+    free(aux);
     buffer_persona.nombre = captura_nombre();
     buffer_persona.domicilio = captura_domicilio();
-    buffer_persona.borrado = No_borrado;
-    
-    int buffer_edad;
-    printf("Edad: "); scanf("%d",&buffer_edad);
-    while(buffer_edad < 0 || 150 < buffer_edad){
-        printf("Edad no valida\n");
-        system("pause");
-        printf("Edad: "); scanf("%d", &buffer_edad);
-    }
-    buffer_persona.edad = (_uint_8)buffer_edad;
-
+    buffer_persona.edad = capturar_edad();
     buffer_persona.genero = captura_genero();
 
     //Comprobador:
     printf("\nPersona agregada:\n");
-    imprimir_Nombre(buffer_persona.nombre);
-    imprimir_Domicilio(buffer_persona.domicilio);
-    printf("No. seguro social: %s\n", buffer_persona.num_SS);
-    printf("Edad: %d",(int)buffer_persona.edad);
-    imprimir_Genero(buffer_persona.genero);
+    imprimir_PERSONA(buffer_persona);
     ////
     return buffer_persona;
 }
 
 char* capturar_numSS(void){
-    char buffer[12];
-    
-    printf("No. seguro social (11 digitos): ");
-    fflush(stdin);
-    gets(buffer);
-    
-    int error;
-    do{
-        error = 0;
-        if(strlen(buffer) != 11){
-            error = 1;
-        }
-        for(size_t i = 0; i < strlen(buffer) && !error; i++){
-            if(buffer[i] < '0' || '9' < buffer[i] ){
-                error = 1;
-            }
-        }
-        if(error){
-            printf("Opcion no valida!\n");
-            system("pause");
-            printf("No. seguro social (11 caracteres): ");
-            fflush(stdin);
-            gets(buffer);
-        }
-    }while(error);
-
+    char *buffer;
+    printf("*Numero de seguro social\n");
+    buffer = capturador_de_strings("No. seguro social (11 digitos): ", 11);
     return buffer; 
 }
 
@@ -184,7 +322,7 @@ Fecha capturar_fecha(void){
     buffer.mes = (_uint)buffer_aux;
 
     printf("A%co: ",164); scanf("%d",&buffer_aux);
-    while(buffer_aux < 0 || 8388608 < buffer_aux){
+    while(buffer_aux < 0 || 8388607 < buffer_aux){
         printf("Opcion no valida!\n");
         system("pause");
         printf("A%co: ",164); scanf("%d",&buffer_aux);
@@ -324,7 +462,7 @@ void imprimir_fecha(Fecha imp){
     return;
 }
 
-void imprimir_Caso(Caso imp){
+void imprimir_CASO(Caso imp){
     printf("No. seguro social: %s\n", imp.no_SS);
     imprimir_estado(imp.estado);
     imprimir_covid(imp.covid);
@@ -334,7 +472,10 @@ void imprimir_Caso(Caso imp){
 
 Caso registrar_caso(void){
     Caso buffer_caso;
-    strcpy(buffer_caso.no_SS, capturar_numSS());
+    char *aux;
+    aux = capturar_numSS();
+    strcpy(buffer_caso.no_SS, aux);
+    free(aux);
     buffer_caso.estado = captura_estadoID();
     buffer_caso.fecha = capturar_fecha();
     buffer_caso.covid = capturar_covid();
