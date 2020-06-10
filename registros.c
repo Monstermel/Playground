@@ -52,18 +52,157 @@ _uint_8 captura_estadoID(void){
     return (_uint_8)(buffer--);
 }
 
+char* capturar_descripcion(_uint_8 imp){
+    int error = 0;
+    char *buffer = (char*)malloc(100*sizeof(char));
+    while (buffer == NULL)
+    {
+        error++;
+        buffer = (char *)malloc(100 * sizeof(char));
+        if (10 < error)
+        {
+            printf("ERROR GRAVE: Cerrando programa\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    switch (imp)
+    {
+    case 0:
+        strcpy(buffer,"Aguascalientes");
+        break;
+    case 1:
+        strcpy(buffer, "Baja California");
+        break;
+    case 2:
+        strcpy(buffer, "Baja California Sur");
+        break;
+    case 3:
+        strcpy(buffer, "Campeche");
+        break;
+    case 4:
+        strcpy(buffer, "Chiapas");
+        break;
+    case 5:
+        strcpy(buffer, "Chihuahua");
+        break;
+    case 6:
+        strcpy(buffer, "Ciudad de Mexico");
+        break;
+    case 7:
+        strcpy(buffer, "Coahuila");
+        break;
+    case 8:
+        strcpy(buffer, "Colima");
+        break;
+    case 9:
+        strcpy(buffer, "Durango");
+        break;
+    case 10:
+        strcpy(buffer, "Estado de Mexico");
+        break;
+    case 11:
+        strcpy(buffer, "Guanajuato");
+        break;
+    case 12:
+        strcpy(buffer, "Guerrero");
+        break;
+    case 13:
+        strcpy(buffer, "Hidalgo");
+        break;
+    case 14:
+        strcpy(buffer, "Jalisco");
+        break;
+    case 15:
+        strcpy(buffer, "Michoacan");
+        break;
+    case 16:
+        strcpy(buffer, "Morelos");
+        break;
+    case 17:
+        strcpy(buffer, "Nayarit");
+        break;
+    case 18:
+        strcpy(buffer, "Nuevo Leon");
+        break;
+    case 19:
+        strcpy(buffer, "Oaxaca");
+        break;
+    case 20:
+        strcpy(buffer, "Puebla");
+        break;
+    case 21:
+        strcpy(buffer, "Queretaro");
+        break;
+    case 22:
+        strcpy(buffer, "Quintana Roo");
+        break;
+    case 23:
+        strcpy(buffer, "San Luis Potosi");
+        break;
+    case 24:
+        strcpy(buffer, "Sinaloa");
+        break;
+    case 25:
+        strcpy(buffer, "Sonora");
+        break;
+    case 26:
+        strcpy(buffer, "Tabasco");
+        break;
+    case 27:
+        strcpy(buffer, "Tamaulipas");
+        break;
+    case 28:
+        strcpy(buffer, "Tlaxcala");
+        break;
+    case 29:
+        strcpy(buffer, "Veracruz");
+        break;
+    case 30:
+        strcpy(buffer, "Yucatan");
+        break;
+    case 31:
+        strcpy(buffer, "Zacatecas");
+        break;
+    }
+    return buffer;
+}
+
+int capturar_poblacion(void){
+    int buffer;
+    printf("*Poblacion\n");
+    printf("Poblacion: ");
+    scanf("%d", &buffer);
+    while (buffer < 0)
+    {
+        printf("Opcion no valida!\n");
+        system("pause");
+        printf("Poblacion: ");
+        scanf("%d", &buffer);
+    }
+    return (buffer);
+}
+
+void imprimir_ESTADO(Estado imp){
+    printf("ID: %d\n", (int)imp.estado);
+    printf("Estado: %s\n", imp.descripcion);
+    printf("Poblacion: %d\n", imp.poblacion);
+    return;
+}
+
 Estado registrar_estado(void){
 
     Estado buffer_estado;
-    buffer_estado.estado = captura_estadoID();
+    _uint_8 aux_1 = captura_estadoID();
+    char* aux_2;
+    buffer_estado.estado = aux_1;
     buffer_estado.borrado = No_borrado;
-    printf("Descripcion del estado: ");
-    fflush(stdin);
-    gets(buffer_estado.descripcion);
+    aux_2 = capturar_descripcion(aux_1);
+    strcpy(buffer_estado.descripcion,aux_2);
+    free(aux_2);
+    buffer_estado.poblacion = capturar_poblacion();
     //Comprobador:
     printf("\n***Estado agregado:\n");
-    printf("Nombre: %s\n", buffer_estado.descripcion);
-    printf("ID: %d\n", buffer_estado.estado);
+    imprimir_ESTADO(buffer_estado);
     ////
     return buffer_estado;
 }
@@ -207,7 +346,7 @@ _uint_8 capturar_edad(void){
     {
         printf("Opcion no valida!\n");
         system("pause");
-        printf("Tecleea la opcion requerida: ");
+        printf("Edad: ");
         scanf("%d", &buffer);
     }
     return (_uint_8)(buffer);
@@ -248,6 +387,7 @@ void imprimir_numSS(const char *imp){
     printf("No. seguro social: %s\n", imp);
     return;
 }
+
 void imprimir_edad(_uint_8 imp){
     printf("Edad: %d\n", imp);
     return;
@@ -353,100 +493,100 @@ _uint_8 capturar_covid(void){
 
 void imprimir_estado(_uint_8 imp){
     switch(imp){
-        case 1:
+        case 0:
             printf("Estado: Aguascalientes\n"); 
             break;
-        case 2:
+        case 1:
             printf("Estado: Baja California\n");
             break;
-        case 3:
+        case 2:
             printf("Estado: Baja California Sur\n");
             break;
-        case 4:
+        case 3:
             printf("Estado: Campeche\n");
             break;
-        case 5:
+        case 4:
             printf("Estado: Chiapas\n");
             break;
-        case 6:
+        case 5:
             printf("Estado: Chihuahua\n");
             break;
-        case 7:
+        case 6:
             printf("Estado: Ciudad de Mexico\n");
             break;
-        case 8:
+        case 7:
             printf("Estado: Coahuila\n");
             break;
-        case 9:
+        case 8:
             printf("Estado: Colima\n");
             break;
-        case 10:
+        case 9:
             printf("Estado: Durango\n");
             break;
-        case 11:
+        case 10:
             printf("Estado: Estado de Mexico\n");
             break;
-        case 12:
+        case 11:
             printf("Estado: Guanajuato\n");
             break;
-        case 13:
+        case 12:
             printf("Estado: Guerrero\n");
             break;
-        case 14:
+        case 13:
             printf("Estado: Hidalgo\n");
             break;
-        case 15:
+        case 14:
             printf("Estado: Jalisco\n");
             break;
-        case 16:
+        case 15:
             printf("Estado: Michoacan\n");
             break;
-        case 17:
+        case 16:
             printf("Estado: Morelos\n");
             break;
-        case 18:
+        case 17:
             printf("Estado: Nayarit\n");
             break;
-        case 19:
+        case 18:
             printf("Estado: Nuevo Leon\n");
             break;
-        case 20:
+        case 19:
             printf("Estado: Oaxaca\n");
             break;
-        case 21:
+        case 20:
             printf("Estado: Puebla\n");
             break;
-        case 22:
+        case 21:
             printf("Estado: Queretaro\n");
             break;
-        case 23:
+        case 22:
             printf("Estado: Quintana Roo\n");
             break;
-        case 24:
+        case 23:
             printf("Estado: San Luis Potosi\n");
             break;
-        case 25:
+        case 24:
             printf("Estado: Sinaloa\n");
             break;
-        case 26:
+        case 25:
             printf("Estado: Sonora\n");
             break;
-        case 27:
+        case 26:
             printf("Estado: Tabasco\n");
             break;
-        case 28:
+        case 27:
             printf("Estado: Tamaulipas\n");
             break;
-        case 29:
+        case 28:
             printf("Estado: Tlaxcala\n");
             break;
-        case 30:
+        case 29:
             printf("Estado: Veracruz\n");
             break;
-        case 31:
+        case 30:
             printf("Estado: Yucatan\n");
             break;
-        case 32:
+        case 31:
             printf("Estado: Zacatecas\n");
             break;
     }
@@ -481,7 +621,7 @@ Caso registrar_caso(void){
     buffer_caso.covid = capturar_covid();
     //Comprobador:
     printf("\nCaso agregado:\n");
-    imprimir_Caso(buffer_caso);
+    imprimir_CASO(buffer_caso);
     return buffer_caso;
 }
 

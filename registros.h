@@ -108,11 +108,12 @@ typedef struct Caso {
 //////////////////////
 
 //FUNCIONES DE IMPRESION
+void imprimir_ESTADO(Estado imp);//Imprime poblacion, id y nombre
 void imprimir_CASO(Caso imp);
 void imprimir_PERSONA(Persona imp);
 void imprimir_fecha(Fecha imp);
 void imprimir_covid(_uint_8 imp);
-void imprimir_estado(_uint_8 imp);
+void imprimir_estado(_uint_8 imp);//Imprime solo el nombre
 void imprimir_genero( _uint_8 imp);
 void imprimir_domicilio(Domicilio imp);
 void imprimir_nombre(Nombre imp);
@@ -121,6 +122,8 @@ void imprimir_edad(_uint_8 imp);
 ////////////////////////
 
 //FUNCIONES DE CAPTURA
+int capturar_poblacion(void) ;
+char* capturar_descripcion(_uint_8 imp);
 char* capturador_de_strings(const char *texto, size_t max_size);
 _uint_8 capturar_covid(void);
 Fecha capturar_fecha(void);
