@@ -28,12 +28,12 @@ char* generar_numSS(void) {
     free(aux);
 
     //tercer y cuarto digito
-    aux = capturador_de_strings("Ultimos dos digitos del aÃ±o en que se dio de alta\n(2 digitos): ", 2);
+    aux = capturador_de_strings("Ultimos dos digitos del año en que se dio de alta\n(2 digitos): ", 2);
     strcat(buffer,aux);
     free(aux);
 
     //quinto y sexto digito
-    aux = capturador_de_strings("Ultimos dos digitos del aÃ±o de nacimiento del paciente\n(2 digitos): ", 2);
+    aux = capturador_de_strings("Ultimos dos digitos del año de nacimiento del paciente\n(2 digitos): ", 2);
     strcat(buffer, aux);
     free(aux);
 
@@ -328,7 +328,7 @@ _uint_8 captura_genero(void){
     printf(" 3) Otro\n");
     printf("Teclea la opcion requerida: ");
     scanf("%d", &buffer);
- 
+
     while (buffer < 1 || 3 < buffer){
         printf("Opcion no valida!\n");
         system("pause");
@@ -341,7 +341,7 @@ char* capturar_numSS(void){
     char *buffer;
     printf("*Numero de seguro social\n");
     buffer = capturador_de_strings("No. seguro social (11 digitos): ", 11);
-    return buffer; 
+    return buffer;
 }
 Fecha capturar_fecha(void){
     Fecha buffer;
@@ -458,7 +458,7 @@ void nuevo_estado(void){
     {
         perror("Ha ocurrido un error");
         system("pause");
-    } 
+    }
     else
     {
         printf("\n***Capturar estado\n\n");
@@ -489,7 +489,7 @@ void nueva_persona(void){
         printf("\n***Capturar persona\n\n");
         //Capturamos la persona
         buffer = registrar_persona();
-        
+
         //Guardamos la informacion:
         fwrite(&buffer, sizeof(Persona), 1, fp_persona);
 
@@ -519,7 +519,7 @@ void nuevo_caso(void){
 
         //Guardamos la informacion:
         fwrite(&buffer, sizeof(Caso), 1, fp_caso);
-    
+
         fclose(fp_caso);
 
     }
@@ -631,7 +631,7 @@ int buscar_casos_Estado(_uint_8 ID, int **registro){
     while (fread(&buffer, sizeof(Caso), 1, fp_casos))
     {
         //Checamos si fread ya llego al EOF
-        if(feof(fp_casos)) 
+        if(feof(fp_casos))
             break;
         if (buffer.estado == ID)
         {
@@ -639,14 +639,14 @@ int buscar_casos_Estado(_uint_8 ID, int **registro){
             tp = (int *)realloc(*registro, encontrado * sizeof(int));
             int errores = 0;
             while (tp == NULL)
-            {     
-                errores++;  
+            {
+                errores++;
                 tp = (int *)realloc(*registro, encontrado * sizeof(int));
                 if(10 < errores){
                     printf("ERROR GRAVE: Cerrando programa\n");
                     fclose(fp_casos);
                     exit(EXIT_FAILURE);
-                } 
+                }
             }
             *registro = tp;
             (*registro)[encontrado - 1] = pocision;
@@ -707,7 +707,7 @@ void imprimir_PERSONA(Persona imp){
 void imprimir_estado(_uint_8 imp){
     switch(imp){
         case 0:
-            printf("Estado: Aguascalientes\n"); 
+            printf("Estado: Aguascalientes\n");
             break;
         case 1:
             printf("Estado: Baja California\n");
