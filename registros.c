@@ -5,6 +5,58 @@
 #include <errno.h>
 #include "registros.h"
 
+//FUNCIONES DE CAPTURA
+char* generar_numSS(void) {
+    char *buffer = (char*)malloc(12*sizeof(char));
+    int error = 0;
+    while (buffer == NULL)
+    {
+        error++;
+        buffer = (char *)malloc(10 * sizeof(char));
+        if (10 < error)
+        {
+            printf("ERROR GRAVE: Cerrando programa\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    char *aux;
+    printf("*Generar no. seguro social\n");
+
+    //Primeros dos digitos
+    aux = capturador_de_strings("Id de la clinica del IMSS del paciente (2 digitos): ", 2);
+    strcpy(buffer,aux);
+    free(aux);
+
+    //tercer y cuarto digito
+    aux = capturador_de_strings("Ultimos dos digitos del año en que se dio de alta\n(2 digitos): ", 2);
+    srcat(buffer,aux);
+    free(aux);
+
+    //quinto y sexto digito
+    aux = capturador_de_strings("Ultimos dos digitos del año de nacimiento del paciente\n(2 digitos): ", 2);
+    srcat(buffer, aux);
+    free(aux);
+
+    //Ultimnos digitos
+    char tmp[12];
+    int paciente;
+    do{
+        strcpy(tmp, buffer);
+        error = 0;
+        aux = capturador_de_strings("Digite 5 digitos: ", 5);
+        srcat(tmp, aux);
+        free(aux);
+
+        if (buscar_persona(tmp,&paciente)){
+            error = 1;
+            printf("El paciente no.%d ya tiene este NSS\n", paciente+1);
+            printf("Cambie los ultimos 5 digitos\n");
+        }
+
+    }while(error);
+    srcpy(buffer, tmp);
+    return buffer;
+}
 _uint_8 captura_estadoID(void){
     int buffer;
     printf("*Estado: ");
@@ -51,10 +103,9 @@ _uint_8 captura_estadoID(void){
     }
     return (_uint_8)(buffer--);
 }
-
 char* capturar_descripcion(_uint_8 imp){
     int error = 0;
-    char *buffer = (char*)malloc(100*sizeof(char));
+    char *buffer = (char *)malloc(100 * sizeof(char));
     while (buffer == NULL)
     {
         error++;
@@ -68,7 +119,7 @@ char* capturar_descripcion(_uint_8 imp){
     switch (imp)
     {
     case 0:
-        strcpy(buffer,"Aguascalientes");
+        strcpy(buffer, "Aguascalientes");
         break;
     case 1:
         strcpy(buffer, "Baja California");
@@ -166,7 +217,6 @@ char* capturar_descripcion(_uint_8 imp){
     }
     return buffer;
 }
-
 int capturar_poblacion(void){
     int buffer;
     printf("*Poblacion\n");
@@ -181,32 +231,6 @@ int capturar_poblacion(void){
     }
     return (buffer);
 }
-
-void imprimir_ESTADO(Estado imp){
-    printf("ID: %d\n", (int)imp.estado);
-    printf("Estado: %s\n", imp.descripcion);
-    printf("Poblacion: %d\n", imp.poblacion);
-    return;
-}
-
-Estado registrar_estado(void){
-
-    Estado buffer_estado;
-    _uint_8 aux_1 = captura_estadoID();
-    char* aux_2;
-    buffer_estado.estado = aux_1;
-    buffer_estado.borrado = No_borrado;
-    aux_2 = capturar_descripcion(aux_1);
-    strcpy(buffer_estado.descripcion,aux_2);
-    free(aux_2);
-    buffer_estado.poblacion = capturar_poblacion();
-    //Comprobador:
-    printf("\n***Estado agregado:\n");
-    imprimir_ESTADO(buffer_estado);
-    ////
-    return buffer_estado;
-}
-
 char* capturador_de_strings(const char *texto, size_t max_size){
 
     char *aux = (char *)malloc(10 * sizeof(char));
@@ -249,59 +273,6 @@ char* capturador_de_strings(const char *texto, size_t max_size){
     } while (error);
     return aux;
 }
-
-char* generar_numSS(void) {
-    char *buffer = (char*)malloc(12*sizeof(char));
-    int error = 0;
-    while (buffer == NULL)
-    {
-        error++;
-        buffer = (char *)malloc(10 * sizeof(char));
-        if (10 < error)
-        {
-            printf("ERROR GRAVE: Cerrando programa\n");
-            exit(EXIT_FAILURE);
-        }
-    }
-    char *aux;
-    printf("*Generar no. seguro social\n");
-
-    //Primeros dos digitos
-    aux = capturador_de_strings("Id de la clinica del IMSS del paciente (2 digitos): ", 2);
-    strcpy(buffer,aux);
-    free(aux);
-
-    //tercer y cuarto digito
-    aux = capturador_de_strings("Ultimos dos digitos del año en que se dio de alta\n(2 digitos): ", 2);
-    srcat(buffer,aux);
-    free(aux);
-
-    //quinto y sexto digito
-    aux = capturador_de_strings("Ultimos dos digitos del año de nacimiento del paciente\n(2 digitos): ", 2);
-    srcat(buffer, aux);
-    free(aux);
-
-    //Ultimnos digitos
-    char tmp[12];
-    int paciente;
-    do{
-        strcpy(tmp, buffer);
-        error = 0;
-        aux = capturador_de_strings("Digite 5 digitos: ", 5);
-        srcat(tmp, aux);
-        free(aux);
-
-        if (buscar_persona(tmp,&paciente)){
-            error = 1;
-            printf("El paciente no.%d ya tiene este NSS\n", paciente+1);
-            printf("Cambie los ultimos 5 digitos\n");
-        }
-
-    }while(error);
-    srcpy(buffer, tmp);
-    return buffer;
-}
-
 Nombre captura_nombre(void){
     Nombre buffer;
     printf("*Nombre completo\n");
@@ -317,7 +288,6 @@ Nombre captura_nombre(void){
 
     return buffer;
 }
-
 Domicilio captura_domicilio(void){
     Domicilio buffer;
     printf("*Domicilio\n");
@@ -336,7 +306,6 @@ Domicilio captura_domicilio(void){
     buffer.estado = captura_estadoID();
     return buffer;
 }
-
 _uint_8 capturar_edad(void){
     int buffer;
     printf("*Edad\n");
@@ -351,7 +320,6 @@ _uint_8 capturar_edad(void){
     }
     return (_uint_8)(buffer);
 }
-
 _uint_8 captura_genero(void){
     int buffer;
     printf("*Genero\n");
@@ -369,77 +337,12 @@ _uint_8 captura_genero(void){
     }
     return (_uint_8)(buffer--);
 }
-
-void imprimir_nombre(Nombre imp){
-    printf("Nombre: %s %s %s\n", imp.apll_P, imp.apll_M, imp.nom);
-    return;
-}
-
-void imprimir_domicilio(Domicilio imp){
-    printf("Calle: %s\n", imp.calle);
-    printf("Numero: %s\n", imp.numero);
-    printf("Colonia: %s\n", imp.colonia);
-    printf("Municipio: %s\n", imp.municipio);
-    imprimir_estado(imp.estado);
-}
-
-void imprimir_numSS(const char *imp){
-    printf("No. seguro social: %s\n", imp);
-    return;
-}
-
-void imprimir_edad(_uint_8 imp){
-    printf("Edad: %d\n", imp);
-    return;
-}
-
-void imprimir_genero( _uint_8 imp){
-    if(imp == Femenino){
-        printf("Genero: Femenino\n");
-    }
-    else if(imp == Masculino){
-        printf("Genero: Masculino\n");
-    }
-    else if(imp == Otro){
-        printf("Genero: Otro\n");
-    }
-    return;
-}
-
-void imprimir_PERSONA(Persona imp){
-    imprimir_nombre(imp.nombre);
-    imprimir_domicilio(imp.domicilio);
-    imprimir_numSS(imp.num_SS);
-    imprimir_edad(imp.edad);
-    imprimir_genero(imp.genero);
-    return;
-}
-
-Persona registrar_persona(void){
-    Persona buffer_persona;
-    buffer_persona.borrado = No_borrado;
-    char *aux = generar_numSS();
-    strcpy(buffer_persona.num_SS, aux);
-    free(aux);
-    buffer_persona.nombre = captura_nombre();
-    buffer_persona.domicilio = captura_domicilio();
-    buffer_persona.edad = capturar_edad();
-    buffer_persona.genero = captura_genero();
-
-    //Comprobador:
-    printf("\nPersona agregada:\n");
-    imprimir_PERSONA(buffer_persona);
-    ////
-    return buffer_persona;
-}
-
 char* capturar_numSS(void){
     char *buffer;
     printf("*Numero de seguro social\n");
     buffer = capturador_de_strings("No. seguro social (11 digitos): ", 11);
     return buffer; 
 }
-
 Fecha capturar_fecha(void){
     Fecha buffer;
     int buffer_aux;
@@ -471,7 +374,6 @@ Fecha capturar_fecha(void){
 
     return buffer;
 }
-
 _uint_8 capturar_covid(void){
     int buffer;
     printf("*Covid-19\n");
@@ -490,7 +392,318 @@ _uint_8 capturar_covid(void){
     }
     return (_uint_8)buffer;
 }
+//////////////////////
 
+//FUNCIONES DE REGISTRO
+Estado registrar_estado(void){
+    Estado buffer_estado;
+    _uint_8 aux_1 = captura_estadoID();
+    char* aux_2;
+    buffer_estado.estado = aux_1;
+    buffer_estado.borrado = No_borrado;
+    aux_2 = capturar_descripcion(aux_1);
+    strcpy(buffer_estado.descripcion,aux_2);
+    free(aux_2);
+    buffer_estado.poblacion = capturar_poblacion();
+    //Comprobador:
+    printf("\n***Estado agregado:\n");
+    imprimir_ESTADO(buffer_estado);
+    ////
+    return buffer_estado;
+}
+Persona registrar_persona(void){
+    Persona buffer_persona;
+    buffer_persona.borrado = No_borrado;
+    char *aux = generar_numSS();
+    strcpy(buffer_persona.num_SS, aux);
+    free(aux);
+    buffer_persona.nombre = captura_nombre();
+    buffer_persona.domicilio = captura_domicilio();
+    buffer_persona.edad = capturar_edad();
+    buffer_persona.genero = captura_genero();
+
+    //Comprobador:
+    printf("\nPersona agregada:\n");
+    imprimir_PERSONA(buffer_persona);
+    ////
+    return buffer_persona;
+}
+Caso registrar_caso(void){
+    Caso buffer_caso;
+    char *aux;
+    aux = capturar_numSS();
+    strcpy(buffer_caso.no_SS, aux);
+    free(aux);
+    buffer_caso.estado = captura_estadoID();
+    buffer_caso.fecha = capturar_fecha();
+    buffer_caso.covid = capturar_covid();
+    //Comprobador:
+    printf("\nCaso agregado:\n");
+    imprimir_CASO(buffer_caso);
+    return buffer_caso;
+}
+////////////////////////
+
+//FUNCIONES DE CREACION
+void nuevo_estado(void){
+
+    FILE *fp_estado;
+
+    Estado buffer;
+
+    //Iniciamos los archivos
+    fp_estado = fopen(F_ESTADOS, "ab");
+
+    if (fp_estado == NULL)
+    {
+        perror("Ha ocurrido un error");
+        system("pause");
+    } 
+    else
+    {
+        printf("\n***Capturar estado\n\n");
+        //Capturamos el estado
+        buffer = registrar_estado();
+        //Guardamos la informacion:
+        fwrite(&buffer, sizeof(Estado), 1, fp_estado);
+        fclose(fp_estado);
+    }
+
+    return;
+
+}
+void nueva_persona(void){
+
+    FILE *fp_persona;
+
+    Persona buffer;
+
+    //Iniciamos los archivos
+    fp_persona = fopen(F_PERSONAS, "ab");
+
+    if(fp_persona==NULL){
+            perror("Ha ocurrido un error");
+            system("pause");
+    }
+    else{
+        printf("\n***Capturar persona\n\n");
+        //Capturamos la persona
+        buffer = registrar_persona();
+        
+        //Guardamos la informacion:
+        fwrite(&buffer, sizeof(Persona), 1, fp_persona);
+
+        fclose(fp_persona);
+    }
+    return;
+}
+void nuevo_caso(void){
+
+    FILE *fp_caso;
+
+    Caso buffer;
+
+    //Iniciamos los archivos
+    fp_caso = fopen(F_CASOS, "ab");
+
+    if (fp_caso == NULL)
+    {
+        perror("Ha ocurrido un error");
+        system("pause");
+    }
+    else
+    {
+        printf("\n***Capturar caso\n\n");
+        //Capturamos caso
+        buffer = registrar_caso();
+
+        //Guardamos la informacion:
+        fwrite(&buffer, sizeof(Caso), 1, fp_caso);
+    
+        fclose(fp_caso);
+
+    }
+    return;
+}
+///////////////////////
+
+//FUNCIONES DE BUSQUEDA
+int buscar_estado(_uint_8 ID, int *registro){
+    FILE *fp_estados;
+    int encontrado = 0;
+    *registro = 0;
+    Estado buffer;
+    fp_estados = fopen(F_ESTADOS, "rb");
+    if (fp_estados == NULL)
+    {
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        system("pause");
+        return 0;
+    }
+    rewind(fp_estados);
+    while (fread(&buffer, sizeof(Estado), 1, fp_estados))
+    {
+        if(feof(fp_estados))
+            break;
+        if (buffer.estado == ID && buffer.borrado == No_borrado)
+        {
+            encontrado = 1;
+            fclose(fp_estados);
+            return encontrado;
+        }
+        (*registro)++;
+    }
+    fclose(fp_estados);
+    return encontrado;
+}
+int buscar_persona(const char *No_SS, int *registro){
+    FILE *fp_persona;
+    int encontrado = 0;
+    *registro = 0;
+    Persona buffer;
+    fp_persona = fopen(F_PERSONAS, "rb");
+    if (fp_persona == NULL)
+    {
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        system("pause");
+        return 0;
+    }
+    rewind(fp_persona);
+    while (fread(&buffer, sizeof(Persona), 1, fp_persona))
+    {
+        if(feof(fp_persona))
+            break;
+        if (!strcmp(No_SS,buffer.num_SS) && buffer.borrado == No_borrado)
+        {
+            encontrado = 1;
+            fclose(fp_persona);
+            return encontrado;
+        }
+        (*registro)++;
+    }
+    fclose(fp_persona);
+    return encontrado;
+}
+int buscar_caso_PN(int *registro){
+    FILE *fp_casos;
+    Caso buffer;
+    memset(registro, 0, 2*sizeof(int));
+    fp_casos = fopen(F_CASOS, "rb");
+    if (fp_casos == NULL)
+    {
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        system("pause");
+        return 0;
+    }
+    rewind(fp_casos);
+    while (fread(&buffer, sizeof(Caso), 1, fp_casos))
+    {
+        //Checamos si fread ya llego al EOF
+        if (feof(fp_casos))
+            break;
+        if(buffer.covid==negativo){
+            registro[0]++;
+        }
+        else if(buffer.covid==positivo){
+            registro[1]++;
+        }
+    }
+    fclose(fp_casos);
+    return 1;
+}
+int buscar_casos_Estado(_uint_8 ID, int **registro){
+    FILE *fp_casos;
+    int encontrado = 0, pocision = 0;
+    int *tp;
+    Caso buffer;
+    fp_casos = fopen(F_CASOS, "rb");
+    if (fp_casos == NULL)
+    {
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        system("pause");
+        return 0;
+    }
+    rewind(fp_casos);
+    while (fread(&buffer, sizeof(Caso), 1, fp_casos))
+    {
+        //Checamos si fread ya llego al EOF
+        if(feof(fp_casos)) 
+            break;
+        if (buffer.estado == ID)
+        {
+            encontrado++;
+            tp = (int *)realloc(*registro, encontrado * sizeof(int));
+            int errores = 0;
+            while (tp == NULL)
+            {     
+                errores++;  
+                tp = (int *)realloc(*registro, encontrado * sizeof(int));
+                if(10 < errores){
+                    printf("ERROR GRAVE: Cerrando programa\n");
+                    fclose(fp_casos);
+                    exit(EXIT_FAILURE);
+                } 
+            }
+            *registro = tp;
+            (*registro)[encontrado - 1] = pocision;
+        }
+        pocision++;
+    }
+    fclose(fp_casos);
+    return encontrado;
+}
+///////////////////////
+
+//FUNCIONES DE IMPRESION
+void imprimir_ESTADO(Estado imp){
+    printf("ID: %d\n", (int)imp.estado);
+    printf("Estado: %s\n", imp.descripcion);
+    printf("Poblacion: %d\n", imp.poblacion);
+    return;
+}
+void imprimir_nombre(Nombre imp){
+    printf("Nombre: %s %s %s\n", imp.apll_P, imp.apll_M, imp.nom);
+    return;
+}
+void imprimir_domicilio(Domicilio imp){
+    printf("Calle: %s\n", imp.calle);
+    printf("Numero: %s\n", imp.numero);
+    printf("Colonia: %s\n", imp.colonia);
+    printf("Municipio: %s\n", imp.municipio);
+    imprimir_estado(imp.estado);
+}
+void imprimir_numSS(const char *imp){
+    printf("No. seguro social: %s\n", imp);
+    return;
+}
+void imprimir_edad(_uint_8 imp){
+    printf("Edad: %d\n", imp);
+    return;
+}
+void imprimir_genero( _uint_8 imp){
+    if(imp == Femenino){
+        printf("Genero: Femenino\n");
+    }
+    else if(imp == Masculino){
+        printf("Genero: Masculino\n");
+    }
+    else if(imp == Otro){
+        printf("Genero: Otro\n");
+    }
+    return;
+}
+void imprimir_PERSONA(Persona imp){
+    imprimir_nombre(imp.nombre);
+    imprimir_domicilio(imp.domicilio);
+    imprimir_numSS(imp.num_SS);
+    imprimir_edad(imp.edad);
+    imprimir_genero(imp.genero);
+    return;
+}
 void imprimir_estado(_uint_8 imp){
     switch(imp){
         case 0:
@@ -591,17 +804,14 @@ void imprimir_estado(_uint_8 imp){
             break;
     }
 }
-
 void imprimir_covid(_uint_8 imp){
     imp==positivo? printf("Covid: Positivo\n"):printf("Covid: Negativo\n");
     return;
 }
-
 void imprimir_fecha(Fecha imp){
     printf("Fecha: %02u/%02u/%u", imp.dia, imp.mes, imp.anio);
     return;
 }
-
 void imprimir_CASO(Caso imp){
     printf("No. seguro social: %s\n", imp.no_SS);
     imprimir_estado(imp.estado);
@@ -609,232 +819,4 @@ void imprimir_CASO(Caso imp){
     imprimir_fecha(imp.fecha);
     return;
 }
-
-Caso registrar_caso(void){
-    Caso buffer_caso;
-    char *aux;
-    aux = capturar_numSS();
-    strcpy(buffer_caso.no_SS, aux);
-    free(aux);
-    buffer_caso.estado = captura_estadoID();
-    buffer_caso.fecha = capturar_fecha();
-    buffer_caso.covid = capturar_covid();
-    //Comprobador:
-    printf("\nCaso agregado:\n");
-    imprimir_CASO(buffer_caso);
-    return buffer_caso;
-}
-
-void nuevo_estado(void){
-
-    FILE *fp_estado;
-
-    Estado buffer;
-
-    //Iniciamos los archivos
-    fp_estado = fopen(F_ESTADOS, "ab");
-
-    if (fp_estado == NULL)
-    {
-        perror("Ha ocurrido un error");
-        system("pause");
-    } 
-    else
-    {
-        printf("\n***Capturar estado\n\n");
-        //Capturamos el estado
-        buffer = registrar_estado();
-        //Guardamos la informacion:
-        fwrite(&buffer, sizeof(Estado), 1, fp_estado);
-        fclose(fp_estado);
-    }
-
-    return;
-
-}
-
-void nueva_persona(void){
-
-    FILE *fp_persona;
-
-    Persona buffer;
-
-    //Iniciamos los archivos
-    fp_persona = fopen(F_PERSONAS, "ab");
-
-    if(fp_persona==NULL){
-            perror("Ha ocurrido un error");
-            system("pause");
-    }
-    else{
-        printf("\n***Capturar persona\n\n");
-        //Capturamos la persona
-        buffer = registrar_persona();
-        
-        //Guardamos la informacion:
-        fwrite(&buffer, sizeof(Persona), 1, fp_persona);
-
-        fclose(fp_persona);
-    }
-    return;
-}
-
-void nuevo_caso(void){
-
-    FILE *fp_caso;
-
-    Caso buffer;
-
-    //Iniciamos los archivos
-    fp_caso = fopen(F_CASOS, "ab");
-
-    if (fp_caso == NULL)
-    {
-        perror("Ha ocurrido un error");
-        system("pause");
-    }
-    else
-    {
-        printf("\n***Capturar caso\n\n");
-        //Capturamos caso
-        buffer = registrar_caso();
-
-        //Guardamos la informacion:
-        fwrite(&buffer, sizeof(Caso), 1, fp_caso);
-    
-        fclose(fp_caso);
-
-    }
-}
-
-int buscar_estado(_uint_8 ID, int *registro){
-    FILE *fp_estados;
-    int encontrado = 0;
-    *registro = 0;
-    Estado buffer;
-    fp_estados = fopen(F_ESTADOS, "rb");
-    if (fp_estados == NULL)
-    {
-        perror("Error grave");
-        printf("No existen datos guardados\n");
-        system("pause");
-        return 0;
-    }
-    rewind(fp_estados);
-    while (fread(&buffer, sizeof(Estado), 1, fp_estados))
-    {
-        if(feof(fp_estados))
-            break;
-        if (buffer.estado == ID && buffer.borrado == No_borrado)
-        {
-            encontrado = 1;
-            fclose(fp_estados);
-            return encontrado;
-        }
-        (*registro)++;
-    }
-    fclose(fp_estados);
-    return encontrado;
-}
-
-int buscar_persona(const char *No_SS, int *registro){
-    FILE *fp_persona;
-    int encontrado = 0;
-    *registro = 0;
-    Persona buffer;
-    fp_persona = fopen(F_PERSONAS, "rb");
-    if (fp_persona == NULL)
-    {
-        perror("Error grave");
-        printf("No existen datos guardados\n");
-        system("pause");
-        return 0;
-    }
-    rewind(fp_persona);
-    while (fread(&buffer, sizeof(Persona), 1, fp_persona))
-    {
-        if(feof(fp_persona))
-            break;
-        if (!strcmp(No_SS,buffer.num_SS) && buffer.borrado == No_borrado)
-        {
-            encontrado = 1;
-            fclose(fp_persona);
-            return encontrado;
-        }
-        (*registro)++;
-    }
-    fclose(fp_persona);
-    return encontrado;
-}
-
-int buscar_caso_PN(int *registro){
-    FILE *fp_casos;
-    Caso buffer;
-    memset(registro, 0, 2*sizeof(int));
-    fp_casos = fopen(F_CASOS, "rb");
-    if (fp_casos == NULL)
-    {
-        perror("Error grave");
-        printf("No existen datos guardados\n");
-        system("pause");
-        return 0;
-    }
-    rewind(fp_casos);
-    while (fread(&buffer, sizeof(Caso), 1, fp_casos))
-    {
-        //Checamos si fread ya llego al EOF
-        if (feof(fp_casos))
-            break;
-        if(buffer.covid==negativo){
-            registro[0]++;
-        }
-        else if(buffer.covid==positivo){
-            registro[1]++;
-        }
-    }
-    fclose(fp_casos);
-    return 1;
-}
-
-int buscar_casos_Estado(_uint_8 ID, int **registro){
-    FILE *fp_casos;
-    int encontrado = 0, pocision = 0;
-    int *tp;
-    Caso buffer;
-    fp_casos = fopen(F_CASOS, "rb");
-    if (fp_casos == NULL)
-    {
-        perror("Error grave");
-        printf("No existen datos guardados\n");
-        system("pause");
-        return 0;
-    }
-    rewind(fp_casos);
-    while (fread(&buffer, sizeof(Caso), 1, fp_casos))
-    {
-        //Checamos si fread ya llego al EOF
-        if(feof(fp_casos)) 
-            break;
-        if (buffer.estado == ID)
-        {
-            encontrado++;
-            tp = (int *)realloc(*registro, encontrado * sizeof(int));
-            int errores = 0;
-            while (tp == NULL)
-            {     
-                errores++;  
-                tp = (int *)realloc(*registro, encontrado * sizeof(int));
-                if(10 < errores){
-                    printf("ERROR GRAVE: Cerrando programa\n");
-                    fclose(fp_casos);
-                    exit(EXIT_FAILURE);
-                } 
-            }
-            *registro = tp;
-            (*registro)[encontrado - 1] = pocision;
-        }
-        pocision++;
-    }
-    fclose(fp_casos);
-    return encontrado;
-}
+/////////////////////////
