@@ -122,7 +122,8 @@ void imprimir_edad(_uint_8 imp);
 ////////////////////////
 
 //FUNCIONES DE CAPTURA
-int capturar_poblacion(void) ;
+_uint_8 capturar_edad(void); 
+int capturar_poblacion(void);
 char* capturar_descripcion(_uint_8 imp);
 char* capturador_de_strings(const char *texto, size_t max_size);
 _uint_8 capturar_covid(void);
