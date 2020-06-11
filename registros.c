@@ -29,12 +29,12 @@ char* generar_numSS(void) {
 
     //tercer y cuarto digito
     aux = capturador_de_strings("Ultimos dos digitos del año en que se dio de alta\n(2 digitos): ", 2);
-    srcat(buffer,aux);
+    strcat(buffer,aux);
     free(aux);
 
     //quinto y sexto digito
     aux = capturador_de_strings("Ultimos dos digitos del año de nacimiento del paciente\n(2 digitos): ", 2);
-    srcat(buffer, aux);
+    strcat(buffer, aux);
     free(aux);
 
     //Ultimnos digitos
@@ -44,7 +44,7 @@ char* generar_numSS(void) {
         strcpy(tmp, buffer);
         error = 0;
         aux = capturador_de_strings("Digite 5 digitos: ", 5);
-        srcat(tmp, aux);
+        strcat(tmp, aux);
         free(aux);
 
         if (buscar_persona(tmp,&paciente)){
@@ -54,7 +54,7 @@ char* generar_numSS(void) {
         }
 
     }while(error);
-    srcpy(buffer, tmp);
+    strcpy(buffer, tmp);
     return buffer;
 }
 _uint_8 captura_estadoID(void){
