@@ -20,20 +20,20 @@ char* generar_numSS(void) {
         }
     }
     char *aux;
-    printf("*Generar no. seguro social\n");
+    printf("\n*Generar no. seguro social\n");
 
     //Primeros dos digitos
-    aux = capturador_de_strings("Id de la clinica del IMSS del paciente (2 digitos): ", 2);
+    aux = capturador_de_strings("ID de la clinica del IMSS del paciente (2 digitos): ", 2);
     strcpy(buffer,aux);
     free(aux);
 
     //tercer y cuarto digito
-    aux = capturador_de_strings("Ultimos dos digitos del año en que se dio de alta\n(2 digitos): ", 2);
+    aux = capturador_de_strings("Ultimos dos digitos del anio en que se dio de alta\n(2 digitos): ", 2);
     strcat(buffer,aux);
     free(aux);
 
     //quinto y sexto digito
-    aux = capturador_de_strings("Ultimos dos digitos del año de nacimiento del paciente\n(2 digitos): ", 2);
+    aux = capturador_de_strings("Ultimos dos digitos del anio de nacimiento del paciente\n(2 digitos): ", 2);
     strcat(buffer, aux);
     free(aux);
 
@@ -49,8 +49,8 @@ char* generar_numSS(void) {
 
         if (buscar_persona(tmp,&paciente)){
             error = 1;
-            printf("El paciente no.%d ya tiene este NSS\n", paciente+1);
-            printf("Cambie los ultimos 5 digitos\n");
+            printf("\nEl paciente no.%d ya tiene este NSS\n", paciente+1);
+            printf("Cambie los ultimos 5 digitos\n\n");
         }
 
     }while(error);
@@ -59,7 +59,7 @@ char* generar_numSS(void) {
 }
 _uint_8 captura_estadoID(void){
     int buffer;
-    printf("*Estado: ");
+    printf("\n*Estado:\n");
     printf(" 1) Aguascalientes\n");
     printf(" 2) Baja California\n");
     printf(" 3) Baja California Sur\n");
@@ -91,17 +91,18 @@ _uint_8 captura_estadoID(void){
     printf(" 29) Tlaxcala\n");
     printf(" 30) Veracruz\n");
     printf(" 31) Yucatan\n");
-    printf(" 32) Zacatecas\n");
-    printf("Teclea la opcion requerida: ");
+    printf(" 32) Zacatecas\n\n");
+    printf("Teclee la opcion requerida: ");
     scanf("%d", &buffer);
-    while (buffer < 1 || 33 < buffer )
+    while (buffer < 1 || 32 < buffer )
     {
         printf("Opcion no valida!\n");
         system("pause");
         printf("Tecleea la opcion requerida: ");
         scanf("%d", &buffer);
     }
-    return (_uint_8)(buffer--);
+    buffer--;
+    return (_uint_8)(buffer);
 }
 char* capturar_descripcion(_uint_8 imp){
     int error = 0;
@@ -219,7 +220,7 @@ char* capturar_descripcion(_uint_8 imp){
 }
 int capturar_poblacion(void){
     int buffer;
-    printf("*Poblacion\n");
+    printf("\n*Poblacion\n");
     printf("Poblacion: ");
     scanf("%d", &buffer);
     while (buffer < 0)
@@ -275,7 +276,7 @@ char* capturador_de_strings(const char *texto, size_t max_size){
 }
 Nombre captura_nombre(void){
     Nombre buffer;
-    printf("*Nombre completo\n");
+    printf("\n*Nombre completo\n");
     printf("Apellido paterno: ");
     fflush(stdin);
     gets(buffer.apll_P);
@@ -290,7 +291,7 @@ Nombre captura_nombre(void){
 }
 Domicilio captura_domicilio(void){
     Domicilio buffer;
-    printf("*Domicilio\n");
+    printf("\n*Domicilio\n");
     printf("Calle: ");
     fflush(stdin);
     gets(buffer.calle);
@@ -308,7 +309,7 @@ Domicilio captura_domicilio(void){
 }
 _uint_8 capturar_edad(void){
     int buffer;
-    printf("*Edad\n");
+    printf("\n*Edad\n");
     printf("Edad: ");
     scanf("%d", &buffer);
     while (buffer < 0 || 255 < buffer)
@@ -322,20 +323,20 @@ _uint_8 capturar_edad(void){
 }
 _uint_8 captura_genero(void){
     int buffer;
-    printf("*Genero\n");
+    printf("\n*Genero\n");
     printf(" 1) Femenino\n");
     printf(" 2) Masculino\n");
-    printf(" 3) Otro\n");
+    printf(" 3) Otro\n\n");
     printf("Teclea la opcion requerida: ");
     scanf("%d", &buffer);
-
     while (buffer < 1 || 3 < buffer){
         printf("Opcion no valida!\n");
         system("pause");
         printf("Tecleea la opcion requerida: ");
         scanf("%d", &buffer);
     }
-    return (_uint_8)(buffer--);
+    buffer--;
+    return (_uint_8)buffer;
 }
 char* capturar_numSS(void){
     char *buffer;
@@ -406,7 +407,7 @@ Estado registrar_estado(void){
     free(aux_2);
     buffer_estado.poblacion = capturar_poblacion();
     //Comprobador:
-    printf("\n***Estado agregado:\n");
+    printf("\n*Estado agregado:\n");
     imprimir_ESTADO(buffer_estado);
     ////
     return buffer_estado;
@@ -423,7 +424,7 @@ Persona registrar_persona(void){
     buffer_persona.genero = captura_genero();
 
     //Comprobador:
-    printf("\nPersona agregada:\n");
+    printf("\n*Persona agregada:\n");
     imprimir_PERSONA(buffer_persona);
     ////
     return buffer_persona;
@@ -461,7 +462,7 @@ void nuevo_estado(void){
     }
     else
     {
-        printf("\n***Capturar estado\n\n");
+        printf("\n***Capturar estado\n");
         //Capturamos el estado
         buffer = registrar_estado();
         //Guardamos la informacion:
@@ -486,7 +487,7 @@ void nueva_persona(void){
             system("pause");
     }
     else{
-        printf("\n***Capturar persona\n\n");
+        printf("\n***Capturar persona\n");
         //Capturamos la persona
         buffer = registrar_persona();
 
@@ -548,6 +549,7 @@ int buscar_estado(_uint_8 ID, int *registro){
             break;
         if (buffer.estado == ID && buffer.borrado == No_borrado)
         {
+
             encontrado = 1;
             fclose(fp_estados);
             return encontrado;
@@ -820,3 +822,48 @@ void imprimir_CASO(Caso imp){
     return;
 }
 /////////////////////////
+
+//FUNCIONES DE BORRADO
+void borrar_estado(void){
+
+    int registro;
+    _uint_8 ID;
+
+    printf("\n***Borrar estado\n");
+    ID = captura_estadoID();
+
+    if(buscar_estado(ID, &registro)){
+
+        FILE *fp;
+        Estado buffer;
+
+        fp = fopen(F_ESTADOS,"r+b");
+
+        if(fp == NULL){
+            printf("No fue posible abrir el archivo\n");
+            system("pause");
+            return;
+        }
+
+        fseek(fp, registro*sizeof(Estado), SEEK_SET);
+        fread(&buffer, sizeof(Estado), 1, fp);
+
+        buffer.borrado = Borrado;
+
+        fseek(fp, registro*sizeof(Estado), SEEK_SET);
+        fwrite(&buffer, sizeof(Estado), 1, fp);
+
+        //COMPROBADOR
+        fclose(fp);
+        printf("Estado borrado con exito\n");
+
+    }
+    else{
+
+        printf("Estado no encontrado\n");
+
+    }
+
+    return;
+}
+///////////////////////

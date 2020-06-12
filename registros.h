@@ -62,8 +62,8 @@ typedef struct Estado {
 
 //DEFINICIONES PERSONA
 enum Generos {
-    Femenino,
-    Masculino,
+    Femenino ,
+    Masculino ,
     Otro
 };
 typedef struct Nombre {
@@ -155,5 +155,9 @@ int buscar_persona(const char *No_SS, int *registro);
 int buscar_estado(_uint_8 ID, int *registro);
 ///////////////////
 
+
+//FUNCIONES DE BORRADO
+void borrar_estado(void);
+////////////////////////
 
 #endif // REGISTROS_H_INCLUDED
