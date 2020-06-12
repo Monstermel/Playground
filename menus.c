@@ -1,11 +1,11 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "menus.h"
 
 
 void menu_general(int *opc) {
-    system("cls"); //Windows
-    printf(" ***Graficos estadisticos COVID-19***\n\n");
+
+    printf("\n***Graficos estadisticos COVID-19***\n\n");
     //Agregas tantas opciones como necesites
     printf("  1) Nuevo estado\n");
     printf("  2) Modificar estado\n");
@@ -29,15 +29,14 @@ void menu_general(int *opc) {
 }
 
 void menu_graficos(int *opc) {
-    system("cls"); //Windows
-    printf(" ***Menu graficos***\n\n");
+    printf("\n***Menu graficos***\n\n");
     //Agregas tantas opciones como necesites
     printf("  1) Positivos y no positivos general, acumulado\n");
     printf("  2) Evolución de positivos por estado\n");
     printf("  3) Evolución de positivos por estado, acumulado\n");
     printf("  4) Evolución de positivos general\n");
     printf("  5) Evolución de positivos general, acumulado\n");
-    printf("  6) Regresar al menú general\n");
+    printf("  6) Regresar al menu general\n\n");
     ////////////////////////////////////////
     printf(" Teclea la opcion requerida: ");
     scanf("%d", opc);
@@ -51,15 +50,14 @@ void menu_graficos(int *opc) {
 }
 
 void menu_modificar_persona(int *opc) {
-    system("cls"); //Windows
-    printf(" ***Modificar persona***\n\n");
+    printf("\n***Modificar persona***\n\n");
     //Agregas tantas opciones como necesites
     printf("  1) Modificar numero de seguro social \n");
     printf("  2) Modificar nombre\n");
     printf("  3) Modificar domicilio\n");
     printf("  4) Modificar edad\n");
     printf("  5) Modificar genero\n");
-    printf("  6) Regresar al menú general\n");
+    printf("  6) Regresar al menu general\n\n");
     ////////////////////////////////////////
     printf(" Teclea la opcion requerida: ");
     scanf("%d", opc);
@@ -73,16 +71,14 @@ void menu_modificar_persona(int *opc) {
 }
 
 void menu_modificar_estado(int *opc) {
-      system("cls"); //Windows
-    printf(" ***Modificar estado***\n\n");
+    printf("\n***Modificar estado***\n\n");
     //Agregas tantas opciones como necesites
-    printf("  1) Modificar descripcion\n");
-    printf("  2) Modificar poblacion\n");
-    printf("  3) Regresar al menú general\n");
+    printf("  1) Modificar poblacion\n");
+    printf("  2) Regresar al menu general\n\n");
     ////////////////////////////////////////
     printf(" Teclea la opcion requerida: ");
     scanf("%d", opc);
-    while (*opc < 1 || 6 < *opc){
+    while (*opc < 1 || 2 < *opc){
         printf(" ¡Opcion no valida!\n");
         system("pause");
         printf(" Tecleea la opcion requerida: ");
