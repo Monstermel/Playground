@@ -98,7 +98,7 @@ typedef struct Fecha {
     _uint dia : 5;
     _uint mes : 4;
     _uint anio : 23;
-} Fecha; 
+} Fecha;
 typedef struct Caso {
     char no_SS[12];
     _uint_8 estado:7;
@@ -122,7 +122,7 @@ void imprimir_edad(_uint_8 imp);
 ////////////////////////
 
 //FUNCIONES DE CAPTURA
-_uint_8 capturar_edad(void); 
+_uint_8 capturar_edad(void);
 int capturar_poblacion(void);
 char* capturar_descripcion(_uint_8 imp);
 char* capturador_de_strings(const char *texto, size_t max_size);
@@ -154,10 +154,6 @@ int buscar_caso_PN(int *registro);//Positivos y negativos
 int buscar_persona(const char *No_SS, int *registro);
 int buscar_estado(_uint_8 ID, int *registro);
 ///////////////////
-
-
-
-
 
 
 #endif // REGISTROS_H_INCLUDED

@@ -60,6 +60,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menus.h" />
 		<Unit filename="pastel.c">
 			<Option compilerVar="CC" />
 		</Unit>
