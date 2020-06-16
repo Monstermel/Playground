@@ -5,12 +5,10 @@
 #define F_PERSONAS "registros/personas.dat"
 #define F_CASOS "registros/casos.dat"
 
-//Hay compiladores que ya tienen esta definicion
-//pero he notado que varia como lo definen asi que
-//mejor lo defino yo para que no haya problemas
+
 typedef unsigned char _uint_8;
 typedef unsigned int _uint;
-//Revisar que el compilador que uso en codeblocks no tenga problemas con estas declaraciones
+
 
 enum Disponibilidad {
     Borrado,
@@ -108,55 +106,57 @@ typedef struct Caso {
 //////////////////////
 
 //FUNCIONES DE IMPRESION
-void imprimir_ESTADO(Estado imp);//Imprime poblacion, id y nombre
-void imprimir_CASO(Caso imp);
-void imprimir_PERSONA(Persona imp);
-void imprimir_fecha(Fecha imp);
-void imprimir_covid(_uint_8 imp);
-void imprimir_estado(_uint_8 imp);//Imprime solo el nombre
-void imprimir_genero( _uint_8 imp);
 void imprimir_domicilio(Domicilio imp);
-void imprimir_nombre(Nombre imp);
 void imprimir_numSS(const char *imp);
+void imprimir_genero( _uint_8 imp);
+void imprimir_PERSONA(Persona imp);
+void imprimir_estado(_uint_8 imp);//Imprime solo el nombre
+void imprimir_ESTADO(Estado imp);//Imprime poblacion, id y nombre
+void imprimir_covid(_uint_8 imp);
+void imprimir_nombre(Nombre imp);
 void imprimir_edad(_uint_8 imp);
+void imprimir_fecha(Fecha imp);
+void imprimir_CASO(Caso imp);
 ////////////////////////
 
-//FUNCIONES DE CAPTURA
-_uint_8 capturar_edad(void);
-int capturar_poblacion(void);
+//FUNCIONES DE CAPTURA Y GENERADO
+char* capturar_string(const char *texto, size_t max_size);
 char* capturar_descripcion(_uint_8 imp);
-char* capturador_de_strings(const char *texto, size_t max_size);
-_uint_8 capturar_covid(void);
-Fecha capturar_fecha(void);
-char* generar_numSS(void);
 char* capturar_numSS(void);
-_uint_8 captura_genero(void);
-Domicilio captura_domicilio(void);
-Nombre captura_nombre(void);
-_uint_8 captura_estadoID(void);
-////////////////////////
+char* generar_numSS(void);
 
-//FUNCIONES DE REGISTRO
-Caso registrar_caso(void);
-Persona registrar_persona(void);
-Estado registrar_estado(void);
+_uint_8 capturar_estadoID(void);
+_uint_8 capturar_genero(void);
+_uint_8 capturar_covid(void);
+_uint_8 capturar_edad(void);
+
+int       capturar_poblacion(void);
+Domicilio capturar_domicilio(void);
+Persona   capturar_persona(void);
+Nombre    capturar_nombre(void);
+Estado    capturar_estado(void);
+Fecha     capturar_fecha(void);
+Caso      capturar_caso(void);
 //////////////////////
 
 //FUNCIONES DE CREACION
-void nuevo_caso(void);
-void nueva_persona(void);
-void nuevo_estado(void);
+void crear_persona(void);
+void crear_estado(void);
+void crear_caso(void);
 ///////////////////
 
 //FUNCIONES DE BUSQUEDA
-int buscar_casos_Estado(_uint_8 ID, int **registro);
-int buscar_caso_PN(int *registro);//Positivos y negativos
 int buscar_persona(const char *No_SS, int *registro);
+int buscar_casos_BE(_uint *aux, size_t elementos);//Barras por estado
+int buscar_casos_PE(_uint_8 ID, _uint **registro);//Positivos por estado
 int buscar_estado(_uint_8 ID, int *registro);
+int buscar_casos_PG(_uint **registro);
+int buscar_caso_PN(int *registro);//Positivos y negativos
 ///////////////////
 
 
 //FUNCIONES DE BORRADO
+void borrar_persona(void);
 void borrar_estado(void);
 ////////////////////////
 
