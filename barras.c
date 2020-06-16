@@ -8,49 +8,6 @@
 #include "algoritmos.h"
 
 
-unsigned int altura(unsigned int n, unsigned int max, unsigned int y){
-    return (n*y)/max;
-}
-
-void impresion_lineas(int max, int y_long){
-
-    int potencia = digit_count(max) - 2;
-
-	if (potencia < 0){
-		//Este if es para que numeros como 1 se redonde a 5
-		//y que 8 se redonde a 10
-		potencia = 0;
-	}
-
-	unsigned int cmp = 5 * int_pow(10, potencia); //comparacion
-
-    unsigned int alt; //altura
-    const unsigned int _buffer_max = max;
-
-    const int left = 100;
-    const int right = getmaxx()-100;
-    const int bottom = getmaxy()-100;
-    setcolor(COLOR(200, 200, 200));
-    setlinestyle(DOTTED_LINE, 0, 1);
-
-    char texto[10];
-
-    while(max){
-
-        alt = altura(max, _buffer_max, y_long);
-
-
-        sprintf(texto,"%u",max);
-        settextstyle(BOLD_FONT, 0, 1);
-        settextjustify(2, 1);
-        outtextxy(left, bottom-alt, texto);
-
-        line(left, bottom-alt, right, bottom-alt);
-        max -= cmp;
-    }
-
-}
-
 void impresion_barras(int prtc_2, int max, int y_long, size_t inicio, size_t final, size_t tamanio, const unsigned int *casos){
     //Cntd es como un contador, cada elemento i aumenta
     //mientra sea menor al elemento i en casos
@@ -74,7 +31,7 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t inicio, size_t fin
     }
 
     //Variables para las barras
-    int left = 100;
+    int left   = 100;
     int top;
     int right;
     int bottom = getmaxy()-100;
@@ -122,18 +79,16 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t inicio, size_t fin
         //Este for imprime cada barra
 
             cntd[j]++;
-
-
+            //Si la barra ya se termino de imprimir
+            //actualizamos left para la siguiente barra
+            //y nos saltamos esta iteracion
             if(cntd[j]>casos[j]){
-                //Si la barra ya se termino de imprimir
-                //actualizamos left para la siguiente barra
-                //y nos saltamos esta iteracion
                 left += 6 * prtc_2;
                 continue;
             }
 
+            top   = bottom - altura(cntd[j], max, y_long);
             left += prtc_2;
-            top = bottom - altura(cntd[j], max, y_long);
             right = left + 4 * prtc_2;
 
             //Primer punto
@@ -168,25 +123,20 @@ void impresion_barras(int prtc_2, int max, int y_long, size_t inicio, size_t fin
 
     free(cntd);
     return;
-
 }
-
 void graficos_barras(const char *texto, size_t inicio, size_t final, size_t tamanio, const unsigned int *casos){
 
     //Texto es el titulo de la grafica
-
     initwindow(1280,720,"Graficos de barras");
     setbkcolor(COLOR(250,250,250));
     cleardevice();
-
+    //Imprimimos el titulo
     setcolor(0);
     settextstyle(BOLD_FONT, 0, 3);
     settextjustify(1, 0);
     outtextxy(100+(getmaxx()-200)/2, 50, texto);
 
     //Marco coords (100, 100, getmaxx()-100, getmaxy()-100).
-
-
     //Calc la dimension del marco
     const short x_long = getmaxx() - 200;
     const short y_long = getmaxy() - 200;
@@ -201,14 +151,55 @@ void graficos_barras(const char *texto, size_t inicio, size_t final, size_t tama
     for(size_t i = inicio-1; i<(final); i++){
         if(casos[i] > max) max = casos[i];
     }
+
     max = integer_round(max);
 
     impresion_lineas(max, y_long);
     impresion_barras(prtc_2, max, y_long, inicio, final, tamanio, casos);
 
+    return;
+}
+unsigned int altura(unsigned int n, unsigned int max, unsigned int y){
+    return (n*y)/max;
+}
+void impresion_lineas(int max, int y_long){
+
+    int potencia = digit_count(max) - 2;
+    //Este if es para que numeros como 1 se redonde a 5
+    //y que 8 se redonde a 10
+	if (potencia < 0){
+		potencia = 0;
+	}
+
+	unsigned int cmp = 5 * int_pow(10, potencia); //comparacion
+
+    unsigned int alt; //altura
+    const unsigned int _buffer_max = max;
+
+    const int left   = 100;
+    const int right  = getmaxx()-100;
+    const int bottom = getmaxy()-100;
+
+    setcolor(COLOR(200, 200, 200));
+    setlinestyle(DOTTED_LINE, 0, 1);
+
+    char texto[10];
+
+    while(max){
+
+        alt = altura(max, _buffer_max, y_long);
 
 
+        sprintf(texto,"%u",max);
+        settextstyle(BOLD_FONT, 0, 1);
+        settextjustify(2, 1);
+        outtextxy(left, bottom-alt, texto);
+
+        line(left, bottom-alt, right, bottom-alt);
+        max -= cmp;
+
+    }
 
     return;
-
 }
+
