@@ -1,32 +1,12 @@
-#include <stdio.h>
-#include <winbgim.h>
 #include <graphics.h>
+#include <winbgim.h>
+#include <stdio.h>
 
 #include "pastel.h"
 
-void rellenar_pastel(int pattern, int a, int b, int c){
-    //Establece el relleno y contorno del pastel
-    setcolor(COLOR(a,b,c));
-    setfillstyle(pattern , COLOR(a,b,c));
-
-    return;
-}
-
-
-void animacion_pastel(int x, int y, int inicio, int final, int radio){
-
-    for(int i = 1; i<=final; i++){
-        pieslice(x, y, inicio, inicio+i, radio);
-        delay(10);
-    }
-
-    return;
-}
-
-
 void texto_pastel(int x, int y, const char *imp_1, float porc, const char *imp_2, int val, int a, int b, int c){
 
-    char texto[25];
+    char texto[100];
 
     setcolor(0);
     sprintf(texto, imp_1, porc);
@@ -40,23 +20,29 @@ void texto_pastel(int x, int y, const char *imp_1, float porc, const char *imp_2
 
     return;
 }
+void animacion_pastel(int x, int y, int inicio, int final, int radio){
 
+    for(int i = 1; i<=final; i++){
+        pieslice(x, y, inicio, inicio+i, radio);
+        delay(10);
+    }
 
+    return;
+}
 void graficos_pastel(long long total, long long a, long long b){
 
     initwindow(1280,720,"Graficos de pastel");
     setbkcolor(COLOR(250,250,250));
     cleardevice();
 
-
-    short x = (short)(getmaxx()/2);
-    short y = (short)(getmaxy()/2);
     unsigned char radio = 200;
+    short x             = (short)(getmaxx()/2);
+    short y             = (short)(getmaxy()/2);
 
     //Valores entre [0,360]
     short ultimo_angulo = 90;
-    short angulo_a = (short)((a*360LL)/total);
-    short angulo_b = (short)((b*360LL)/total);
+    short angulo_a      = (short)((a*360LL)/total);
+    short angulo_b      = (short)((b*360LL)/total);
     if((angulo_a+angulo_b)!=360){
         //Correccion de numeros decimales
         angulo_a++;
@@ -85,7 +71,7 @@ void graficos_pastel(long long total, long long a, long long b){
     settextjustify(LEFT_TEXT , CENTER_TEXT);
 
     //Se imprime el titulo
-    texto_pastel(x-50, y-250, "Titulo", 0.0, "", 0, 250,250,250);
+    texto_pastel(x-280, y-250, "Positivos y no positivos general", 0.0, "", 0, 250,250,250);
 
     //Se imprime los casos totales
     texto_pastel(x+60, y-150, "Casos totales:", 0.0, "    %d", (int)total, 0, 0, 0);
@@ -98,5 +84,14 @@ void graficos_pastel(long long total, long long a, long long b){
 
     return;
 }
+void rellenar_pastel(int pattern, int a, int b, int c){
+    //Establece el relleno y contorno del pastel
+    setcolor(COLOR(a,b,c));
+    setfillstyle(pattern , COLOR(a,b,c));
+
+    return;
+}
+
+
 
 
