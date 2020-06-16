@@ -31,14 +31,14 @@ void menu_general(int *opc) {
 void menu_graficos(int *opc) {
     printf("\n***Menu graficos***\n\n");
     //Agregas tantas opciones como necesites
-    printf("  1) Positivos y no positivos general, acumulado\n");
-    printf("  2) Evolución de positivos por estado\n");
-    printf("  3) Evolución de positivos por estado, acumulado\n");
-    printf("  4) Evolución de positivos general\n");
-    printf("  5) Evolución de positivos general, acumulado\n");
-    printf("  6) Regresar al menu general\n\n");
+    printf(" 1) Positivos y no positivos general, acumulado\n");
+    printf(" 2) Evolucion de positivos por estado\n");
+    printf(" 3) Evolucion de positivos por estado, acumulado\n");
+    printf(" 4) Evolucion de positivos general\n");
+    printf(" 5) Evolucion de positivos general, acumulado\n");
+    printf(" 6) Regresar al menu general\n\n");
     ////////////////////////////////////////
-    printf(" Teclea la opcion requerida: ");
+    printf("Teclea la opcion requerida: ");
     scanf("%d", opc);
     while (*opc < 1 || 6 < *opc){
         printf(" ¡Opcion no valida!\n");
