@@ -588,6 +588,13 @@ Estado    capturar_estado(void){
 
     buffer_estado.borrado   = No_borrado;
     buffer_estado.estado    = capturar_estadoID();
+
+    int aux;
+    if(buscar_estado(buffer_estado.estado, &aux)){
+        buffer_estado.estado = 127;
+        return buffer_estado;
+    }
+
     buffer_estado.poblacion = capturar_poblacion();
 
     char* aux_2 = capturar_descripcion(buffer_estado.estado);
@@ -672,7 +679,6 @@ void crear_persona(void){
     if(fp_persona==NULL){
 
         perror("Ha ocurrido un error");
-        system("pause");
 
     }
     else{
@@ -695,7 +701,6 @@ void crear_estado(void){
     if (fp_estado == NULL){
 
         perror("Ha ocurrido un error");
-        system("pause");
 
     }
     else{
@@ -703,6 +708,13 @@ void crear_estado(void){
         printf("\n***Capturar estado\n");
         //Capturamos el estado
         Estado buffer = capturar_estado();
+
+        if(buffer.estado == 127){
+            printf("Estado ya registrado\n");
+            fclose(fp_estado);
+            return;
+        }
+
         //Guardamos la informacion:
         fwrite(&buffer, sizeof(Estado), 1, fp_estado);
         fclose(fp_estado);
@@ -718,7 +730,6 @@ void crear_caso(void){
     if (fp_caso == NULL){
 
         perror("Ha ocurrido un error");
-        system("pause");
 
     }
     else{
@@ -751,7 +762,6 @@ int buscar_persona(const char *No_SS, int *registro){
     if (fp_persona == NULL){
         perror("Error grave");
         printf("No existen datos guardados\n");
-        system("pause");
         return 0;
     }
 
@@ -840,8 +850,7 @@ int buscar_casos_PE(_uint_8 ID, _uint **registro){
     if (fp_casos == NULL){
         perror("Error grave");
         printf("No existen datos guardados\n");
-        system("pause");
-        return 0;
+        return -1;
     }
 
     rewind(fp_casos);
@@ -892,7 +901,6 @@ int buscar_estado(_uint_8 ID, int *registro){
     if (fp_estados == NULL){
         perror("Error grave");
         printf("No existen datos guardados\n");
-        system("pause");
         return 0;
     }
 
@@ -929,8 +937,7 @@ int buscar_casos_PG(_uint **registro){
     if (fp_casos == NULL){
         perror("Error grave");
         printf("No existen datos guardados\n");
-        system("pause");
-        return 0;
+        return -1;
     }
 
     rewind(fp_casos);
@@ -1020,7 +1027,6 @@ void borrar_persona(void){
 
         if(fp == NULL){
             printf("No fue posible abrir el archivo\n");
-            system("pause");
             return;
         }
 
@@ -1060,7 +1066,6 @@ void borrar_estado(void){
 
         if(fp == NULL){
             printf("No fue posible abrir el archivo\n");
-            system("pause");
             return;
         }
 
@@ -1088,3 +1093,103 @@ void borrar_estado(void){
 }
 
 ///////////////////////
+
+//FUNCIONES DE LISTADO
+void listar_personas(void){
+
+    FILE *fp_personas = fopen(F_PERSONAS, "rb");
+
+    if (fp_personas == NULL){
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        return;
+    }
+
+    rewind(fp_personas);
+
+    Persona buffer;
+    printf("\n***Personas registradas\n\n");
+    printf("---------------------------------\n");
+    while (fread(&buffer, sizeof(Persona), 1, fp_personas)){
+
+        if(feof(fp_personas))
+            break;
+
+        if (buffer.borrado == No_borrado){
+            printf("\n");
+            imprimir_PERSONA(buffer);
+            printf("\n---------------------------------\n");
+
+        }
+
+    }
+    fclose(fp_personas);
+    return;
+}
+void listar_estados(void){
+
+    FILE *fp_estados = fopen(F_ESTADOS, "rb");
+
+    if (fp_estados == NULL){
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        return;
+    }
+
+    rewind(fp_estados);
+
+    Estado buffer;
+    printf("\n***Estados registrados\n\n");
+    printf("---------------------------------\n");
+    while (fread(&buffer, sizeof(Estado), 1, fp_estados)){
+
+        if(feof(fp_estados))
+            break;
+
+        if (buffer.borrado == No_borrado){
+            printf("\n");
+            imprimir_ESTADO(buffer);
+            printf("\n---------------------------------\n");
+
+        }
+
+    }
+
+    fclose(fp_estados);
+    return;
+}
+void listar_casos(void){
+
+    FILE *fp_casos = fopen(F_CASOS, "rb");
+
+    if (fp_casos == NULL){
+        perror("Error grave");
+        printf("No existen datos guardados\n");
+        return;
+    }
+
+    rewind(fp_casos);
+
+    Caso buffer;
+    printf("\n***Casos registrados\n\n");
+    printf("---------------------------------\n");
+    while (fread(&buffer, sizeof(Caso), 1, fp_casos)){
+
+        if(feof(fp_casos))
+            break;
+
+        printf("\n");
+        imprimir_CASO(buffer);
+        printf("\n---------------------------------\n");
+
+
+    }
+
+    fclose(fp_casos);
+    return;
+}
+
+
+/////////////////////
+
+

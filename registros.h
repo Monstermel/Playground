@@ -160,4 +160,11 @@ void borrar_persona(void);
 void borrar_estado(void);
 ////////////////////////
 
+//FUNCIONES DE LISTADO
+void listar_personas(void);
+void listar_estados(void);
+void listar_casos(void);
+////////////////////////
+
+
 #endif // REGISTROS_H_INCLUDED
