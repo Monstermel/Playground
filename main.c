@@ -17,7 +17,6 @@ void portada(void){
     printf("\tFacultad de Estudios Superiores Acatlan\n\n");
     printf("\tProfesor: Andres Hernandez Balderas\n\n");
     printf("\tAutor: Abreu Alvarez Jose Antonio\n\n");
-    printf("\tNo. cuenta: 317083222\n\n");
     printf("\t---------------------------------------\n\n");
     system("pause");
 }
