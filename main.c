@@ -137,6 +137,7 @@ void modificar_persona(void){
     else{
 
         printf("Persona no disponible\n");
+        system("pause");
 
     }
 
@@ -162,7 +163,9 @@ void switch_graficos(void){
 
                 system("cls");
                 //Buscamos los casos positivos y negativos
-                buscar_caso_PN(registro);
+                if(!buscar_caso_PN(registro)){
+                    break;
+                }
 
                 //Imprimimos los graficos de pastel
                 graficos_pastel(registro[negativo]+registro[positivo],
@@ -185,6 +188,12 @@ void switch_graficos(void){
 
                 //Buscamos los casos postivos de un estado y obtenemos el numero de elementos
                 elementos = buscar_casos_PE(ID, &casos);
+
+                //Revisamos que no haya ocurrido errores y que si tenga casos positivos
+                if(elementos == -1) {
+                    system("pause");
+                    break;
+                }
                 if(!elementos){
                     printf("\nEste estado no tiene casos positivos\n\n");
                     system("pause");
@@ -221,6 +230,12 @@ void switch_graficos(void){
 
                 //Buscamos los casos postivos de un estado y obtenemos el numero de elementos
                 elementos = buscar_casos_PE(ID, &casos);
+
+                //Revisamos que no haya ocurrido errores y que si tenga casos positivos
+                if(elementos == -1) {
+                    system("pause");
+                    break;
+                }
                 if(!elementos){
                     printf("\nEste estado no tiene casos positivos\n\n");
                     system("pause");
@@ -254,6 +269,12 @@ void switch_graficos(void){
                 system("cls");
                 //Buscamos los casos postivos generales y obtenemos el numero de elementos
                 elementos = buscar_casos_PG(&casos);
+
+                //Revisamos que no haya ocurrido errores y que si tenga casos positivos
+                if(elementos == -1) {
+                    system("pause");
+                    break;
+                }
                 if(!elementos){
                     printf("\nEste estado no tiene casos positivos\n\n");
                     system("pause");
@@ -279,6 +300,12 @@ void switch_graficos(void){
                 system("cls");
                 //Buscamos los casos postivos generales y obtenemos el numero de elementos
                 elementos = buscar_casos_PG(&casos);
+
+                //Revisamos que no haya ocurrido errores y que si tenga casos positivos
+                if(elementos == -1) {
+                    system("pause");
+                    break;
+                }
                 if(!elementos){
                     printf("\nEste estado no tiene casos positivos\n\n");
                     system("pause");
@@ -354,15 +381,31 @@ int main(void){
                 crear_caso();
                 system("pause");
                 break;
-            case 8:
+            case 8://Apartado listo
                 system("cls");
                 switch_graficos();
                 break;
             case 9:
+                system("cls");
+                listar_estados();
+                system("pause");
                 break;
+            case 10:
+                system("cls");
+                listar_personas();
+                system("pause");
+                break;
+            case 11:
+                system("cls");
+                listar_casos();
+                system("pause");
+                break;
+            case 12:
+                break;
+
         }
 
-    } while (opc != 9);
+    } while (opc != 12);
 
     return 0;
 }
