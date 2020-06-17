@@ -11,6 +11,17 @@
 #include "barras.h"
 #include "menus.h"
 
+void portada(void){
+    printf("\t---------------------------------------\n");
+    printf("\n\tProyecto final de Progranacion II\n\n");
+    printf("\tFacultad de Estudios Superiores Acatlan\n\n");
+    printf("\tProfesor: Andres Hernandez Balderas\n\n");
+    printf("\tAutor: Abreu Alvarez Jose Antonio\n\n");
+    printf("\tNo. cuenta: 317083222\n\n");
+    printf("\t---------------------------------------\n\n");
+    system("pause");
+}
+
 
 void modificar_estado(void){
 
@@ -340,6 +351,8 @@ void switch_graficos(void){
 }
 
 int main(void){
+
+    portada();
 
     int opc;
 
