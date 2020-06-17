@@ -15,16 +15,20 @@ void menu_general(int *opc) {
     printf("  6) Borrar persona\n");
     printf("  7) Registrar casos\n");
     printf("  8) Graficos\n");
-    printf("  9) Salir\n\n");
+    printf("  9) Listar estados\n");
+    printf(" 10) Listar personas\n");
+    printf(" 11) Listar casos\n");
+    printf(" 12) Salir\n\n");
     ////////////////////////////////////////
     printf(" Teclea la opcion requerida: ");
     scanf("%d", opc);
-    while (*opc < 1 || 9 < *opc){
+    while (*opc < 1 || 12 < *opc){
         printf(" ¡Opcion no valida!\n");
         system("pause");
         printf(" Tecleea la opcion requerida: ");
         scanf("%d", opc);
     }
+
     return;
 }
 
