@@ -3,6 +3,7 @@
 #include <tgmath.h>
 
 #include "menu.h"
+#include "newton.h"
 
 /*
     Nota:
@@ -14,19 +15,18 @@
     tipo de instruccion) y regresara lo que regrese la ultima en ese caso la expresion 3.
 */
 
+void (*metodo[])(unsigned) = {
+    [1] = metodo_newton,
+    //[2] = metodo_secante,
+};
+
 int main(void) {
-    unsigned opc_1;
+    system("cls");
+    unsigned opc_1;  // Funcion a utilizar
     while (menu_funciones(&opc_1), system("cls"), opc_1 != 5) {
-        unsigned opc_2;
+        unsigned opc_2;  // Metodo a utilizar
         while (menu_metodo(&opc_2, opc_1), system("cls"), opc_2 != 3) {
-            /*
-                Aqui va el resto del programa:
-                Opc_1 es la funcion que vamos a resolver.
-                Opc_2 es el metodo que vamos a usar para eso.
-                Dependiendo el metodo capturamos los siguientes
-                datos: intervalo o valor inicial, máximo de
-                iteraciones y tolerancia.
-            */
+            metodo[opc_2](opc_1);
         }
     }
     return EXIT_SUCCESS;
