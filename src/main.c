@@ -1,27 +1,34 @@
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <tgmath.h>
 
 #include "menu.h"
 #include "newton.h"
-
-/*
-    Nota:
-    Talves se saquen de onda con los whiles, es algo que no nos enseñan en la carrea
-    (que se me hace medio pendejo ya que es muy util), pero en C/C++ existe un operador
-    especial, la coma: ",".
-    por ejemplo: (expresion_1, expresion_2, expresion_3), si escribimos eso lo que el
-    programa hara es evualar la expresion 1, luego la 2 y al final la 3, (puede ser caulquier
-    tipo de instruccion) y regresara lo que regrese la ultima en ese caso la expresion 3.
-*/
+#include "secante.h"
 
 void (*metodo[])(unsigned) = {
     [1] = metodo_newton,
-    //[2] = metodo_secante,
+    [2] = metodo_secante,
 };
 
-int main(void) {
+void portada(void) {
+    puts("\n# Programa 1");
+    puts("# Curso: Metodos numericos");
+    puts("# Prof.: Teresa Carrillo Ramírez");
+    puts("# Facultad De Estudios Superiores Acatlan");
+    puts("\n# Integrantes:");
+    puts("# Abreu Alvarez Jose Antonio");
+    puts("# Avelar Alvarado Julio Cesar");
+    puts("# Hernandez Garcia Luis Enrique");
+    puts("# Salazar Silvero Rafael");
+    system("pause");
     system("cls");
+    return;
+}
+
+int main(void) {
+    portada();
     unsigned opc_1;  // Funcion a utilizar
     while (menu_funciones(&opc_1), system("cls"), opc_1 != 5) {
         unsigned opc_2;  // Metodo a utilizar

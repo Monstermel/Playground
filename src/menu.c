@@ -43,3 +43,15 @@ void menu_metodo(unsigned* opc, unsigned fnctn) {
     }
     return;
 }
+
+void crtr_paro(unsigned* crtr) {
+    puts("# Seleccione el criterio a usar");
+    puts("\t1) Error absoluto");
+    puts("\t2) Error relativo");
+    puts("\t3) Error porcentual");
+
+    while (printf("# [1,3]:"), read_opc(crtr), (*crtr) < 1 || 3 < (*crtr)) {
+        puts("# Opcion no valida");
+    }
+    return;
+}

@@ -19,12 +19,15 @@ void metodo_newton(unsigned fnctn) {
     unsigned itr_max;
     scanf("%u%*c", &itr_max);
 
+    unsigned crtr;
+    crtr_paro(&crtr);
+
     printf("# Digite la tolerancia: ");
     double tolerancia;
     scanf("%lf%*c", &tolerancia);
 
     double e_abs, e_rel, e_por;
-    double aux;
+    double aux = 0.0;
 
     printf("\n------Iteracion # 0------");
     printf("\nxk     = %.6lf ", x);
@@ -34,7 +37,7 @@ void metodo_newton(unsigned fnctn) {
     unsigned i = 1;
     while (i <= itr_max) {
         if (isnan(f_x[fnctn](x)) || isnan(df_x[fnctn](x))) {
-            puts("\n# Error de dominio");
+            puts("\n# Error de dominio en la evaluacion de funciones");
             break;
         }
 
@@ -49,6 +52,11 @@ void metodo_newton(unsigned fnctn) {
         e_rel = e_abs / fabs(x);
         e_por = e_rel * 100.00;
 
+        if (isnan(e_rel)) {
+            puts("\n# Error de dominio en el calculo de errores");
+            break;
+        }
+
 
         printf("\n------Iteracion # %u------", i);
         printf("\nxk     = %.10lf ", aux);
@@ -59,10 +67,17 @@ void metodo_newton(unsigned fnctn) {
         printf("\nError Porcentual: %.10lf%%", e_por);
         printf("\n");
 
-        if (e_abs < tolerancia) {
+        double swtch_crtr[] = {
+            [1] = e_abs,
+            [2] = e_rel,
+            [3] = e_por,
+        };
+
+        if (swtch_crtr[crtr] < tolerancia) {
             puts("\n# Tolerancia alcanzada");
             break;
         }
+
 
         i++;
         if (itr_max < i) {
@@ -73,7 +88,7 @@ void metodo_newton(unsigned fnctn) {
         x = aux;
     }
 
-    printf("\n# Solucion obtenida: x  %.10lf\n\n", aux);
+    printf("\n# Solucion obtenida: x = %.10lf\n\n", aux);
     system("pause");
     system("cls");
 
