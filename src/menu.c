@@ -25,7 +25,7 @@ void menu_funciones(unsigned* opc) {
     puts("\t4) f(x) = x^3 + 6x^2 + 9.4x + 2.5");
     puts("\t5) Salir");
 
-    while (printf("# [1,5]:"), read_opc(opc), (*opc) < 1 || 5 < (*opc)) {
+    while (printf("# [1,5]: "), read_opc(opc), (*opc) < 1 || 5 < (*opc)) {
         puts("# Opcion no valida");
     }
     return;
@@ -38,7 +38,7 @@ void menu_metodo(unsigned* opc, unsigned fnctn) {
     puts("\t2) Metodo de la Secante");
     puts("\t3) Salir");
 
-    while (printf("# [1,3]:"), read_opc(opc), (*opc) < 1 || 3 < (*opc)) {
+    while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 3 < (*opc)) {
         puts("# Opcion no valida");
     }
     return;
@@ -50,7 +50,7 @@ void crtr_paro(unsigned* crtr) {
     puts("\t2) Error relativo");
     puts("\t3) Error porcentual");
 
-    while (printf("# [1,3]:"), read_opc(crtr), (*crtr) < 1 || 3 < (*crtr)) {
+    while (printf("# [1,3]: "), read_opc(crtr), (*crtr) < 1 || 3 < (*crtr)) {
         puts("# Opcion no valida");
     }
     return;

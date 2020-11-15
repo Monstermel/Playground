@@ -15,7 +15,7 @@ void (*metodo[])(unsigned) = {
 void portada(void) {
     puts("\n# Programa 1");
     puts("# Curso: Metodos numericos");
-    puts("# Prof.: Teresa Carrillo Ramírez");
+    puts("# Prof.: Teresa Carrillo Ramirez");
     puts("# Facultad De Estudios Superiores Acatlan");
     puts("\n# Integrantes:");
     puts("# Abreu Alvarez Jose Antonio");
