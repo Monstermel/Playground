@@ -10,10 +10,15 @@ const char* fnctns[] = {
     [4] = "f(x) = x^3 + 6x^2 + 9.4x + 2.5",
 };
 
-void read_opc(unsigned* opc) {
-    char bffr[100];
-    scanf("%[^\n]%*c", bffr);
-    (*opc) = (unsigned) (bffr[0] - '0');
+void menu_programa(unsigned* opc) {
+    puts("# Seleccione el programa a ejecutar");
+    puts("\t1) No se que poner aqui");
+    puts("\t2) Solucion de sistemas de ecuaciones");
+    puts("\t3) Salir");
+
+    while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 3 < (*opc)) {
+        puts("# Opcion no valida");
+    }
     return;
 }
 
@@ -41,6 +46,13 @@ void menu_metodo(unsigned* opc, unsigned fnctn) {
     while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 3 < (*opc)) {
         puts("# Opcion no valida");
     }
+    return;
+}
+
+void read_opc(unsigned* opc) {
+    char bffr[100];
+    scanf("%[^\n]%*c", bffr);
+    (*opc) = (unsigned) (bffr[0] - '0');
     return;
 }
 
