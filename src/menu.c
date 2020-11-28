@@ -12,7 +12,7 @@ const char* fnctns[] = {
 
 void menu_programa(unsigned* opc) {
     puts("# Seleccione el programa a ejecutar");
-    puts("\t1) No se que poner aqui");
+    puts("\t1) Metodo Newton/Secante");
     puts("\t2) Solucion de sistemas de ecuaciones");
     puts("\t3) Salir");
 

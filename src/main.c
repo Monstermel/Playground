@@ -41,9 +41,14 @@ void programa_1(void){
     return;
 }
 
+void programa_2(void){
+    /*Aqui va el bonito codigo*/
+    return;
+}
+
 void (*programa[])(void) = {
     [1] = programa_1,
-    [2] = programa_1,
+    [2] = programa_2,
 };
 
 int main(void) {
