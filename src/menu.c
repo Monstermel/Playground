@@ -70,7 +70,7 @@ void read_opc(unsigned* opc) {
 void read_opc_size_t(size_t* opc) {
     char bffr[100];
     scanf("%[^\n]%*c", bffr);
-    (*opc) = (size_t) (bffr[0] - '0');
+    (*opc) = (size_t)(bffr[0] - '0');
     return;
 }
 
