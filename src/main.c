@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "newton.h"
 #include "secante.h"
+#include "matrix.h"
 
 
 void portada(void) {
@@ -24,7 +25,7 @@ void portada(void) {
     system("cls");
     return;
 }
-
+///////////////////////////////////////////////////////////////////////////
 void (*metodo[])(unsigned) = {
     [1] = metodo_newton,
     [2] = metodo_secante,
@@ -40,11 +41,21 @@ void programa_1(void){
     }
     return;
 }
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////
+void (*mtrx_mtd[])(void) = {
+    [1] = read_matrix, //
+};
 
 void programa_2(void){
-    /*Aqui va el bonito codigo*/
+    unsigned opc_1;
+    while (menu_ectn_slvr(&opc_1), system("cls"), opc_1 != 2) {
+        mtrx_mtd[opc_1]();
+    }
     return;
 }
+///////////////////////////////////////////////////////////////////////////
 
 void (*programa[])(void) = {
     [1] = programa_1,
