@@ -6,11 +6,10 @@
 
 #include <math.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "menu.h"
-
-
 
 void swap_row(size_t N, double arr[N][N], size_t _i, size_t _j) {
     double aux[N];
@@ -85,40 +84,107 @@ double determiant(size_t N, double arr[N][N]) {
     return ans;
 }
 
-void solve_mtrx(size_t N, double arr[N][N + 1]) {
-    // Este for se desplaza por la diagonal
-    for (size_t clmn = 0; clmn < N - 1; clmn++) {
-        // Pivoteo parcial
-        size_t i_max = clmn;
-        for (size_t i = clmn; i < N; i++) {
-            if (fabs(arr[i_max][clmn]) < fabs(arr[i][clmn])) {
-                i_max = i;
-            }
-        }
-        if (clmn != i_max) {
-            swap_row(N + 1, arr, clmn, i_max);
-        }
-        // Este for se desplaza atravez de las filas
-        for (size_t i = clmn + 1; i < N; i++) {
-            // Aqui hacemos la suma de renglones
-            double pvt = -(arr[i][clmn] / arr[clmn][clmn]);
-            for (size_t j = 0; j <= N; j++) {
-                arr[i][j] = pvt * arr[clmn][j] + arr[i][j];
-            }
-        }
-    }
-    // Despejamos y calculamos la solucion
-    for (size_t row = N - 1; row != SIZE_MAX; row--) {
-        for (size_t clmn = row + 1; clmn < N; clmn++) {
-            arr[row][N] -= arr[row][clmn] * arr[clmn][N];
-        }
-        arr[row][N] /= arr[row][row];
+
+double nrma_espctrl(size_t N, double x_0[N], double x_1[N]) {
+    double aux[N];
+    for (size_t i = 0; i < N; i++) {
+        aux[i] = fabs(x_0[i] - x_1[i]);
     }
 
-    puts("\n# Solucion:");
-    for (size_t i = 0; i < N; i++) {
-        printf("\tx_%zu = %.5lf\n", i + 1, arr[i][N]);
+    double ans = aux[0];
+    for (size_t i = 1; i < N; i++) {
+        ans = _MAX(ans, aux[i]);
     }
+
+    return ans;
+}
+
+bool is_EDD(size_t N, double arr[N][N]) {
+    for (size_t i = 0; i < N; i++) {
+        double aux_1 = fabs(arr[i][i]);
+        double aux_2 = 0.0;
+        for (size_t j = 0; j < N; j++) {
+            if (i == j) continue;
+            aux_2 += arr[i][j];
+        }
+        if (aux_1 <= aux_2) return false;
+    }
+    return true;
+}
+
+void solve_mtrx(size_t N, double arr[N][N + 1]) {
+    system("cls");
+    double T_arr[N][N];
+    double C_arr[N];
+    for(size_t i = 0; i < N; i++){
+        for(size_t j = 0; j < N; j++){
+            T_arr[i][j] = arr[i][j];
+        }
+    }
+    for(size_t i = 0; i < N; i++){
+        C_arr[i] = arr[i][N];
+    }
+
+    if (!is_EDD(N, T_arr)) {
+        puts("\n# La convergencia no se garantiza por no tratarse de un sistema EDD");
+    }
+
+    // Generamos la matris T y C
+    for (size_t i = 0; i < N; i++) {
+        double aux = T_arr[i][i];
+        C_arr[i] /= aux;
+        for (size_t j = 0; j < N; j++) {
+            if (i == j) {
+                T_arr[i][i] = 0.0;
+                continue;
+            }
+            T_arr[i][j] = -(T_arr[i][j] / aux);
+        }
+    }
+
+    // Aqui aplicamos Jacobi
+    printf("# Digite el numero maximo de iteraciones: ");
+    size_t iteraciones;
+    scanf("%zu%*c", &iteraciones);
+    printf("# Digite la tolerancia: ");
+    double tolerancia;
+    scanf("%lf%*c", &tolerancia);
+
+    double ans_0[4] = {};
+    double ans_1[4];
+    puts("");
+    for (size_t itr = 0; itr < iteraciones; itr++) {
+        for (size_t i = 0; i < N; i++) {
+            ans_1[i] = 0;
+            for (size_t j = 0; j < N; j++) {
+                ans_1[i] += T_arr[i][j] * ans_0[j];
+            }
+        }
+        for (size_t i = 0; i < N; i++) {
+            ans_1[i] += C_arr[i];
+        }
+        double norma = nrma_espctrl(N, ans_0, ans_1);
+
+        printf("# Iteracion %zu:\n", itr + 1);
+        for (size_t i = 0; i < N; i++) {
+            printf("  %.6lf\n", ans_1[i]);
+        }
+        puts("");
+
+        if (norma < tolerancia) {
+            puts("# Tolarancia alcanzada");
+            break;
+        }
+
+        for (size_t i = 0; i < N; i++) {
+            ans_0[i] = ans_1[i];
+        }
+    }
+    puts("# Vector solucion:");
+    for (size_t i = 0; i < N; i++) {
+        printf("  %.6lf\n", ans_1[i]);
+    }
+    return;
 }
 
 void read_matrix(void) {

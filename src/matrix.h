@@ -24,6 +24,7 @@
             arr[i][j] = src[i][j];             \
         }                                      \
     }
+#define _MAX(a, b) ((a) < (b)) ? (b) : (a)
 #include <stdlib.h>
 
 void   read_matrix(void);
