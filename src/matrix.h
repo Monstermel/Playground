@@ -24,6 +24,7 @@
             arr[i][j] = src[i][j];             \
         }                                      \
     }
+#include <stdlib.h>
 
 void   read_matrix(void);
 double determiant(size_t N, double arr[N][N]);

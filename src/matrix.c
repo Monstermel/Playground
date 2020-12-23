@@ -86,9 +86,6 @@ double determiant(size_t N, double arr[N][N]) {
 }
 
 void solve_mtrx(size_t N, double arr[N][N + 1]) {
-    if (N == 1) {
-        return arr[0][0];
-    }
     // Este for se desplaza por la diagonal
     for (size_t clmn = 0; clmn < N - 1; clmn++) {
         // Pivoteo parcial
