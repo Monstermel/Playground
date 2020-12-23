@@ -26,6 +26,9 @@
     }
 #define _MAX(a, b) ((a) < (b)) ? (b) : (a)
 #include <stdlib.h>
+#include <stdbool.h>
+
+extern bool resolver;
 
 void   read_matrix(void);
 double determiant(size_t N, double arr[N][N]);

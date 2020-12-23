@@ -166,6 +166,7 @@ void solve_mtrx(size_t N, double arr[N][N + 1]) {
         double norma = nrma_espctrl(N, ans_0, ans_1);
 
         printf("# Iteracion %zu:\n", itr + 1);
+        printf("# Error: %.5lf\n", norma);
         for (size_t i = 0; i < N; i++) {
             printf("  %.6lf\n", ans_1[i]);
         }
@@ -187,7 +188,7 @@ void solve_mtrx(size_t N, double arr[N][N + 1]) {
     return;
 }
 
-void read_matrix(void) {
+void read_matrix(size_t* _N, double**_arr) {
     printf("\n# Digita la dimension de la matriz: ");
     size_t N;
     scanf("%zu%*c", &N);
@@ -218,6 +219,9 @@ void read_matrix(void) {
     printf("\n# Digita los elementos [i] del vector indepentiende: \n");
     double ind[N][1];
     _LOAD_MTRX(ind, N, 1);
+
+    *_N = N;
+    _arr = (double*) realloc(_arr, )
 
     while (crrctn_mtrx(&opc, N, 1, ind), opc != 2) {
         puts("# Ingresa la posicion [i] del elemento que deseas cambiar");

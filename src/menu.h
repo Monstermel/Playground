@@ -2,6 +2,7 @@
 #define MENU_H_INCLUDED
 
 #include <stdlib.h>
+#include "matrix.h"
 
 void menu_programa(unsigned* opc);
 void menu_ectn_slvr(unsigned* opc);
