@@ -50,21 +50,12 @@ void menu_metodo(unsigned* opc, unsigned fnctn) {
 }
 
 void menu_ectn_slvr(unsigned* opc) {
-
     puts("\n# Seleccione una opcion");
     puts("\t1) Lectura de la matriz");
-    if(resolver){
-        puts("\t2) Solucion del sistema");
-    }
-    puts("\t3) Salir");
-    if(resolver) {
-        while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 3 < (*opc)) {
-            puts("# Opcion no valida");
-        }
-    } else {
-        while (printf("# [1 o 3]: "), read_opc(opc), (*opc) != 1 && (*opc) != 3) {
-            puts("# Opcion no valida");
-        }
+    puts("\t2) Salir");
+
+    while (printf("# [1,2]: "), read_opc(opc), (*opc) < 1 || 2 < (*opc)) {
+        puts("# Opcion no valida");
     }
     return;
 }

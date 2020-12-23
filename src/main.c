@@ -44,20 +44,14 @@ void programa_1(void){
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////
-void (*mtrx_mtd[])(size_t*, double**) = {
+void (*mtrx_mtd[])(void) = {
     [1] = read_matrix, //
-    [2] = solve_mtrx
 };
 
 void programa_2(void){
-    resolver = false;
     unsigned opc_1;
-    // Matriz:
-    size_t N;
-    double** arr = NULL;
-    //
-    while (menu_ectn_slvr(&opc_1), system("cls"), opc_1 != 3) {
-        mtrx_mtd[opc_1](&N, arr);
+    while (menu_ectn_slvr(&opc_1), system("cls"), opc_1 != 2) {
+        mtrx_mtd[opc_1]();
     }
     return;
 }
