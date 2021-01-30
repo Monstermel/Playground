@@ -1,8 +1,5 @@
 #include "menu.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
 const char* fnctns[] = {
     [1] = "f(x) = (x^2)(cosx) - 2x",
     [2] = "f(x) = (6 - (2/x^2))(e^(2+x)/4) + 1",
@@ -14,9 +11,10 @@ void menu_programa(unsigned* opc) {
     puts("\n# Seleccione el programa a ejecutar");
     puts("\t1) Metodo Newton/Secante");
     puts("\t2) Solucion de sistemas de ecuaciones");
-    puts("\t3) Salir");
+    puts("\t3) Calculo de valores propios. Metodo de potencias");
+    puts("\t4) Salir");
 
-    while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 3 < (*opc)) {
+    while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 4 < (*opc)) {
         puts("# Opcion no valida");
     }
     return;
@@ -49,12 +47,28 @@ void menu_metodo(unsigned* opc, unsigned fnctn) {
     return;
 }
 
-void menu_ectn_slvr(unsigned* opc) {
-    puts("\n# Seleccione una opcion");
-    puts("\t1) Lectura de la matriz");
+void menu_ind(unsigned* opc) {
+    puts("# Introducir otro vector independiente:");
+    puts("\t1) Si");
     puts("\t2) Salir");
 
-    while (printf("# [1,2]: "), read_opc(opc), (*opc) < 1 || 2 < (*opc)) {
+    while (printf("# [1,3]: "), read_opc(opc), (*opc) < 1 || 2 < (*opc)) {
+        puts("# Opcion no valida");
+    }
+    return;
+}
+
+void menu_ectn_slvr(unsigned* opc, bool show) {
+    puts("\n# Seleccione una opcion");
+    puts("\t1) Lectura de la matriz");
+    if (show) {
+        puts("\t2) Solucion del sistema");
+        puts("\t3) Solucion del sistema por Cholesky");
+    }
+    puts("\t4) Salir");
+
+    while (printf("# [1,4]: "), read_opc(opc),
+           ((*opc) < 1 || 4 < (*opc)) || (!show && ((*opc) == 2 || (*opc) == 3))) {
         puts("# Opcion no valida");
     }
     return;
