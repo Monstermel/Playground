@@ -154,6 +154,8 @@ void solve_cholesky(size_t N, double** arr) {
             system("cls");
             puts("");
         }
+        puts("# Matriz L:");
+        _PRNT_MTRX(L_mtrx, N, N);
         for (size_t i = 0; i < N; i++) {
             double aux = 0.0;
             for (size_t j = 0; j < i; j++) {
