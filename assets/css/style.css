@@ -1,12 +1,156 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Roboto:ital,wght@1,300&display=swap");
 
+:root {
+	--primary-color: #e6e6e6;
+	--primary-text-color: #000;
+	--secondary-color: #3d3d3d;
+	--secondary-text-color: #e0e0e0;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
 * {
 	box-sizing: border-box;
 	padding: 0;
+	border: 0;
 	margin: 0;
 }
 
 body {
-	font-family: 'Lato', sans-serif;
-	background-color: #e6e6e6;
+	font-family: "Lato", sans-serif;
+	background-color: var(--primary-color);
+	color: var(--primary-text-color);
+	line-height: 1.6;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: var(--primary-text-color)
+}
+
+h1,
+h2 {
+	font-weight: 300;
+	line-height: 1.2;
+	margin: 10px 0;
+}
+
+p {
+	margin: 10px 0;
+}
+
+img {
+	width: 100%;
+}
+
+
+/* Navbar */
+.navbar {
+	box-shadow: rgb(0 0 0 / 15%) 0px 0px 30px;
+	padding: 1rem;
+}
+
+.navbar ul {
+	display: flex;
+}
+
+.navbar a {
+	padding: 0 10px;
+	margin: 0 5px;
+}
+
+.navbar .logo {
+	padding: 0;
+	margin: 0;
+}
+
+.navbar .fa-ticket {
+	margin-right: 0.25em;
+}
+
+.navbar h1 {
+	font-weight: 1000;
+	margin: 0;
+}
+
+.navbar a:not(.logo):hover {
+	border-bottom: 2px var(--primary-text-color) solid;
+}
+
+
+.navbar .flex {
+	justify-content: space-between;
+}
+
+/* Showcase */
+.cards-display {
+	display: inline-flex;
+}
+
+.card .image {
+	position: absolute;
+	z-index: 0;
+}
+
+.card .mask {
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(to bottom, transparent 45%, black 80%);
+}
+
+.card .mask-hover {
+	position: absolute;
+	z-index: 3;
+	height: 100%;
+	width: 100%;
+	background: transparent;
+}
+
+.card .mask-hover:hover {
+	position: absolute;
+	z-index: 3;
+	height: 100%;
+	width: 100%;
+	background: red;
+	opacity: 0.25;
+}
+
+.card .overlay {
+	position: absolute;
+	z-index: 2;
+	color: #fff;
+	font-size: medium;
+	font-weight: 600;
+	width: 100%;
+	height: 40%;
+	bottom: 0px;
+	display: table;
+}
+
+.overlay p {
+	display: table-cell;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0 1rem;
+}
+
+/* Footer */
+footer {
+	background-color: var(--secondary-color);
+	color: var(--secondary-text-color);
+	margin-top: auto;
+}
+
+footer a {
+	color: var(--secondary-text-color)
 }

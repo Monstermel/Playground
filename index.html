@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="assets/css/utilities.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -14,98 +15,106 @@
 <body>
 	<!-- Navbar -->
 	<div class="navbar">
-		<div class="container">
-			<a href="/">
-				<h1 class="logo">Ticket UNAM</h1>
+		<div class="container flex">
+			<a class="logo" href="/">
+				<h1><i class="fa-solid fa-ticket"></i>Ticket UNAM</h1>
 			</a>
 			<nav>
 				<ul>
 					<li><a href="#">Inicio</a></li>
-					<li><a href="funciones.html">Funciones</a></li>
-					<li><a href="promociones.html">Promociones</a></li>
-					<li><a href="#footer">Contacto</a></li>
+					<li><a href="#">Funciones</a></li>
+					<li><a href="#">Promociones</a></li>
+					<li><a href="#">Contacto</a></li>
+					<li><a href="#">Buscar</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 
-	<!-- Main -->
-	<div id="main">
-		<div class="inner">
+	<!-- Showcase -->
+	<div id="showcase">
+		<div class="container p-left-1 p-bottom-5">
 			<header>
-				<p>
-					Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit
-					amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis
-					venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem
-					ipsum dolor sit amet nullam dolore.
-				</p>
+				<div id="lipsum">
+					<h1>Lorem</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis sapien elit, vitae
+						auctor erat cursus sed. Pellentesque congue nec purus quis maximus. Sed non sagittis justo.
+						Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis
+						dignissim nisi et erat convallis commodo. Fusce ultricies, neque nec volutpat dictum, leo metus
+						tincidunt eros, at congue orci eros sed risus. Donec non elementum elit. Mauris magna nibh,
+						dignissim eget est at, venenatis iaculis ante. Curabitur tempor mauris eu lorem aliquam
+						pulvinar. Suspendisse dictum cursus velit sed posuere. Quisque auctor quis libero et vehicula.
+						Pellentesque vel massa ornare, imperdiet nunc sit amet, sagittis mauris. Vestibulum aliquet
+						viverra libero vitae elementum.
+					</p>
+				</div>
 			</header>
-			<section class="tiles">
-				<article class="style1">
-					<span class="image">
-						<img src="" alt="" />
-					</span>
-					<a href="#">
-						<h2>Magna</h2>
-						<div class="content">
-							<p>
-								Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros
-								et feugiat.
-							</p>
+
+			<section class="showcase">
+				<h1>Funciones</h1>
+				<div class="cards-display">
+					<a class="card" href="#">
+						<div class="mask mask-hover"></div>
+						<div class="overlay">
+							<p>Jurassic World: Dominio</p>
 						</div>
+						<span class="image">
+							<img src="assets/img/jurassic_world.jpg" alt="jurassic_world" />
+						</span>
 					</a>
-				</article>
-				<article class="style2">
-					<span class="image">
-						<img src="" alt="" />
-					</span>
-					<a href="#">
-						<h2>Lorem</h2>
-						<div class="content">
-							<p>
-								Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros
-								et feugiat.
-							</p>
+
+					<a class="card" href="#">
+						<div class="mask mask-hover"></div>
+						<div class="overlay">
+							<p>Lightyear</p>
 						</div>
+						<span class="image">
+							<img src="assets/img/lightyear.jpg" alt="lightyear" />
+						</span>
 					</a>
-				</article>
+				</div>
 			</section>
 		</div>
 	</div>
 
 	<!-- Footer -->
-	<footer id="footer">
-		<div class="inner">
-			<section>
+	<footer>
+		<div class="container  flex">
+			<section class="contacto">
 				<h2>Contacto</h2>
+
 				<form method="post" action="#">
-					<div class="fields">
-						<div class="field half">
+					<div>
+						<div>
 							<input type="text" name="name" id="name" placeholder="Nombre" />
 						</div>
-						<div class="field half">
+						<div>
 							<input type="email" name="email" id="email" placeholder="Correo" />
 						</div>
-						<div class="field">
-							<textarea name="message" id="message" placeholder="Mensaje"></textarea>
+						<div>
+							<textarea type="message" id="message" placeholder="Mensaje"></textarea>
 						</div>
 					</div>
+
 					<ul class="actions">
 						<li><input type="submit" value="Enviar" class="primary" /></li>
 					</ul>
 				</form>
 			</section>
-			<section>
+
+			<section class="social">
 				<h2>Siguenos</h2>
-				<ul class="icons">
+
+				<ul class="">
 					<li>
-						<a href="#" class=""><span class="label">Twitter</span></a>
+						<a href="https://twitter.com/"><i class="fa-brands fa-twitter-square fa-2xl"></i></a>
 					</li>
 					<li>
-						<a href="#" class=""><span class="label">Facebook</span></a>
+						<a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-square fa-2xl"></i></a>
 					</li>
 					<li>
-						<a href="#" class=""><span class="label">Instagram</span></a>
+						<a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-2xl"></i></a>
 					</li>
 				</ul>
 			</section>
