@@ -16,51 +16,22 @@
 	width: 164.69px;
 	height: 247.03px;
 	margin-right: 20px;
+	margin-top: 20px;
 	position: relative;
 }
 
 .btn {
-	display: inline-block;
-	padding: 10px 30px;
+	padding: 1px;
 	cursor: pointer;
 	background: var(--primary-color);
-	color: #fff;
+	color: var(--primary-text-color);
 	border: none;
-	border-radius: 5px;
-}
-
-.btn-outline {
-	background-color: transparent;
-	border: 1px #fff solid;
+	border-radius: 8px;
+	font-weight: 550;
 }
 
 .btn:hover {
 	transform: scale(0.98);
-}
-
-/* Backgrounds & colored buttons */
-.bg-primary,
-.btn-primary {
-	background-color: var(--primary-color);
-	color: #fff;
-}
-
-.bg-secondary,
-.btn-secondary {
-	background-color: var(--secondary-color);
-	color: #fff;
-}
-
-.bg-dark,
-.btn-dark {
-	background-color: var(--dark-color);
-	color: #fff;
-}
-
-.bg-light,
-.btn-light {
-	background-color: var(--light-color);
-	color: #333;
 }
 
 /* Text sizes */
@@ -113,6 +84,11 @@
 	align-items: center;
 	height: 100%;
 }
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
 
 .grid-2 {
 	display: grid;
