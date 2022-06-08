@@ -3,10 +3,13 @@
 :root {
 	--primary-color: #e6e6e6;
 	--primary-text-color: #000;
-	--secondary-color: #3d3d3d;
-	--secondary-text-color: #e0e0e0;
-	--success-color: #5cb85c;
-	--error-color: #d9534f;
+
+	--secondary-color: #2D2D2D;
+	--secondary-text-color: #fff;
+
+	--third-color: #B3B3B3;
+	--fourth-color: #838383;
+	--fifth-color: #565656;
 }
 
 * {
@@ -94,6 +97,7 @@ img {
 .cards-display {
 	display: inline-flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .card .image {
@@ -122,14 +126,14 @@ img {
 	z-index: 3;
 	height: 100%;
 	width: 100%;
-	background: red;
-	opacity: 0.25;
+	background: var(--fifth-color);
+	opacity: 0.4;
 }
 
 .card .overlay {
 	position: absolute;
 	z-index: 2;
-	color: #fff;
+	color: var(--primary-color);
 	font-size: medium;
 	font-weight: 600;
 	width: 100%;
@@ -260,7 +264,7 @@ input[type="file"] {
 	text-align: center;
 }
 
-#showcase-search .container {
+#showcase-search .container:first-child {
 	max-width: 400px;
 }
 
@@ -291,4 +295,49 @@ input[type="file"] {
 	font-family: "Lato", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
+}
+
+/* let str = `<a class='card' href='#'>
+<span class='mask'></span>
+<div class='mask-hover'></div>
+<div class='overlay'>`;
+str += "<p>" + elemento.titulo + "</p>";
+str += `</div>
+<span class='image'>`;
+str += "<img src= 'assets/img/" + elemento.portada + "' alt='" + elemento.titulo + "' />";
+str += `</span>
+</a>`; */
+
+.card-data-container {
+	border-radius: 0.6rem;
+	background-color: var(--third-color);
+	display: flex;
+	width: 400px;
+	margin: 0.25rem;
+}
+
+.card-data-container .card {
+	margin: 0px;
+}
+
+#data {
+	font-size: medium;
+	font-weight: 600;
+	color: var(--primary-text-color);
+	width: 235.31px;
+	height: 100%;
+	padding: 1rem;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: space-between;
+}
+
+#btn-update {
+	width: 100%;
+	height: 30px;
+}
+
+#btn-delete {
+	width: 100%;
+	height: 30px;
 }

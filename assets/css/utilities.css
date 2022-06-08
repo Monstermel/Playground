@@ -9,7 +9,7 @@
 }
 
 .card {
-	color: #fff;
+	color: var(--secondary-text-color);
 	border-radius: 0.6rem;
 	box-shadow: rgb(0 0 0 / 15%) 0px 0px 30px;
 	overflow: hidden;

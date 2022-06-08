@@ -29,7 +29,9 @@
 				</form>
 			</section>
 		</div>
-		<div class="cards-display">
+		<div class="container p-left-1 p-bottom-5">
+			<div class="cards-display">
+			</div>
 		</div>
 	</div>
 
@@ -37,8 +39,9 @@
 	<?php include_once("assets/php/footer.php"); ?>
 
 	<!-- Scripts -->
-	<script src="assets/js/show_all_search.js"></script>
-	<script src="assets/js/show_name_search.js"></script>
+	<script src="assets/js/update_delete.js"></script>
+	<script src="assets/js/search_all.js"></script>
+	<script src="assets/js/search_name.js"></script>
 </body>
 
 </html>
