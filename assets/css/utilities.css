@@ -23,8 +23,6 @@
 .btn {
 	padding: 1px;
 	cursor: pointer;
-	background: var(--primary-color);
-	color: var(--primary-text-color);
 	border: none;
 	border-radius: 8px;
 	font-weight: 550;
@@ -32,6 +30,16 @@
 
 .btn:hover {
 	transform: scale(0.98);
+}
+
+.btn-primary {
+	background: var(--primary-color);
+	color: var(--primary-text-color);
+}
+
+.btn-secondary {
+	background: var(--secondary-color);
+	color: var(--secondary-text-color);
 }
 
 /* Text sizes */

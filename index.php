@@ -6,30 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="assets/css/utilities.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<title>Ticket UNAM</title>
 </head>
 
 <body>
 	<!-- Navbar -->
-	<div class="navbar">
-		<div class="container flex flex-wrap">
-			<a class="logo" href="/">
-				<h1><i class="fa-solid fa-ticket"></i>Ticket UNAM</h1>
-			</a>
-			<nav>
-				<ul>
-					<li><a href="index.html">Inicio</a></li>
-					<li><a href="#">Funciones</a></li>
-					<li><a href="#">Promociones</a></li>
-					<li><a href="create.html">Agregar pelicula</a></li>
-					<li><a href="#">Buscar</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+	<?php include_once("assets/php/navbar.php"); ?>
 
 	<!-- Showcase -->
 	<div id="showcase">
@@ -81,31 +64,7 @@
 	</div>
 
 	<!-- Footer -->
-	<footer>
-		<div class="container flex flex-wrap">
-			<section id="social" class="flex">
-				<a id="logo" href="/">
-					<i class="fa-solid fa-ticket"></i><span>Ticket UNAM</span>
-				</a>
-				<span id="iconos" class="flex">
-					<a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
-					<a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
-					<a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-					<a href="https://github.com/Monstermel/Ticket-UNAM"><i class="fa-brands fa-github"></i></a>
-				</span>
-			</section>
-
-			<section id="contacto">
-				<span>Contacto</span>
-				<form id="contact-form" class="flex" method="post" action="#">
-					<input type="name" name="name" placeholder="Nombre" required />
-					<input type="email" name="email" placeholder="Correo" required />
-					<textarea placeholder="Mensaje" required></textarea>
-					<input class="btn" type="submit" value="Enviar" />
-				</form>
-			</section>
-		</div>
-	</footer>
+	<?php include_once("assets/php/footer.php"); ?>
 
 	<!-- Scripts -->
 	<script src=""></script>

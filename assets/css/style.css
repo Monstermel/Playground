@@ -192,23 +192,23 @@ footer a {
 	gap: 1rem;
 }
 
-input[type=name] {
+#contacto input[type=text] {
 	margin-top: 5px;
 }
 
-input {
+#contacto input {
 	height: 30px;
 	width: 100%;
 }
 
-textarea {
+#contacto textarea {
 	resize: none;
 	width: 100%;
 	height: 100px;
 }
 
-input[type="name"],
-input[type="email"],
+input[type=text],
+input[type=email],
 textarea {
 	background-color: var(--secondary-color);
 	border-bottom: solid var(--secondary-text-color) 1px;
@@ -216,8 +216,40 @@ textarea {
 	padding: 5px 10px;
 }
 
-::placeholder {
+#contacto ::placeholder {
 	color: var(--secondary-text-color);
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* Create */
+
+#create {
+	padding: 2rem 1.5rem 5rem 1.5rem;
+}
+
+#create .flex {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#create input {
+	padding: 5px 10px;
+	height: 30px;
+	width: 100%;
+}
+
+#create input[type="text"],
+input[type="number"],
+input[type="file"] {
+	color: var(--primary-text-color);
+	background-color: var(--primary-color);
+	border-bottom: solid var(--primary-text-color) 1px;
+}
+
+#create ::placeholder {
+	color: var(--primary-text-color);
 	font-family: "Lato", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
