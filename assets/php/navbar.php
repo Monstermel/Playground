@@ -7,10 +7,8 @@
 		<nav>
 			<ul>
 				<li><a href="/">Inicio</a></li>
-				<li><a href="#">Funciones</a></li>
-				<li><a href="#">Promociones</a></li>
 				<li><a href="create.php">Agregar pelicula</a></li>
-				<li><a href="#">Buscar</a></li>
+				<li><a href="search.php">Buscar</a></li>
 			</ul>
 		</nav>
 	</div>

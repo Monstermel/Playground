@@ -14,25 +14,31 @@
 	<!-- Navbar -->
 	<?php include_once("assets/php/navbar.php"); ?>
 
-	<!-- Showcase -->
-	<div id="showcase-create">
-		<section id="create" class="container">
-			<h1>Agregar pelicula</h1>
-			<form id="form-create" class="flex">
-				<input type="text" name="titulo" placeholder="Titulo" required/>
-				<input type="text" name="genero" placeholder="Genero" required/>
-				<input type="file" name="portada" placeholder="Portada" required/>
-				<input type="number" name="precio" placeholder="Precio" required step="any" min="0"/>
-				<input id="btn-nuevo" type="submit" class="btn btn-secondary" value="Enviar"/>
-			</form>
-		</section>
+	<div id="showcase-search">
+		<div class="container p-left-1 p-bottom-5">
+			<section id="search-all">
+				<h1>Mostrar todos</h1>
+				<button id ="btn-search-all" class="btn btn-secondary"><span>Mostrar</span></button>
+			</section>
+
+			<section id="search-name">
+				<h1>Buscar por titulo</h1>
+				<form id="form-search-name" class="flex">
+					<input type="text" name="titulo" placeholder="Titulo" required/>
+					<input id="btn-search-name" type="submit" class="btn btn-secondary" value="Buscar">
+				</form>
+			</section>
+		</div>
+		<div class="cards-display">
+		</div>
 	</div>
 
 	<!-- Footer -->
 	<?php include_once("assets/php/footer.php"); ?>
 
 	<!-- Scripts -->
-	<script src="assets/js/parse_create.js" type="module"></script>
+	<script src="assets/js/show_all_search.js"></script>
+	<script src="assets/js/show_name_search.js"></script>
 </body>
 
 </html>

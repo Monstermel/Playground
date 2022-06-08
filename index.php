@@ -37,27 +37,6 @@
 			<section class="showcase">
 				<h1>Funciones</h1>
 				<div class="cards-display">
-					<a class="card" href="#">
-						<span class="mask"></span>
-						<div class="mask-hover"></div>
-						<div class="overlay">
-							<p>Jurassic World: Dominio</p>
-						</div>
-						<span class="image">
-							<img src="assets/img/jurassic_world.jpg" alt="jurassic_world" />
-						</span>
-					</a>
-
-					<a class="card" href="#">
-						<span class="mask"></span>
-						<div class="mask-hover"></div>
-						<div class="overlay">
-							<p>Lightyear</p>
-						</div>
-						<span class="image">
-							<img src="assets/img/lightyear.jpg" alt="lightyear" />
-						</span>
-					</a>
 				</div>
 			</section>
 		</div>
@@ -67,7 +46,7 @@
 	<?php include_once("assets/php/footer.php"); ?>
 
 	<!-- Scripts -->
-	<script src=""></script>
+	<script src="assets/js/show_all.js"></script>
 </body>
 
 </html>
