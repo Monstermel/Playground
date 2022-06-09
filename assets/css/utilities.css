@@ -1,0 +1,185 @@
+.absolute {
+	position: absolute;
+}
+
+.container {
+	overflow: auto;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+.card {
+	color: var(--secondary-text-color);
+	border-radius: 0.6rem;
+	box-shadow: rgb(0 0 0 / 15%) 0px 0px 30px;
+	overflow: hidden;
+	width: 164.69px;
+	height: 247.03px;
+	margin-right: 20px;
+	margin-top: 20px;
+	position: relative;
+}
+
+.btn {
+	padding: 1px;
+	cursor: pointer;
+	border: none;
+	border-radius: 8px;
+	font-weight: 550;
+}
+
+.btn:hover {
+	transform: scale(0.98);
+}
+
+.btn-primary {
+	background: var(--primary-color);
+	color: var(--primary-text-color);
+}
+
+.btn-secondary {
+	background: var(--secondary-color);
+	color: var(--secondary-text-color);
+}
+
+/* Text sizes */
+.text-S {
+	font-size: 1rem;
+}
+
+.text-M {
+	font-size: 2rem;
+}
+
+.text-L {
+	font-size: 3rem;
+}
+
+.text-XL {
+	font-size: 4rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+/* Flex y Grind */
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.grid-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+/* Margin */
+.my-1 {
+	margin: 1rem 0;
+}
+
+.my-2 {
+	margin: 2rem 0;
+}
+
+.my-3 {
+	margin: 3rem 0;
+}
+
+.my-4 {
+	margin: 4rem 0;
+}
+
+.my-5 {
+	margin: 5rem 0;
+}
+
+.m-1 {
+	margin: 1rem;
+}
+
+.m-2 {
+	margin: 2rem;
+}
+
+.m-3 {
+	margin: 3rem;
+}
+
+.m-4 {
+	margin: 4rem;
+}
+
+.m-5 {
+	margin: 5rem;
+}
+
+/* Padding */
+.py-1 {
+	padding: 1rem 0;
+}
+
+.py-2 {
+	padding: 2rem 0;
+}
+
+.py-3 {
+	padding: 3rem 0;
+}
+
+.py-4 {
+	padding: 4rem 0;
+}
+
+.py-5 {
+	padding: 5rem 0;
+}
+
+.p-1 {
+	padding: 1rem;
+}
+
+.p-2 {
+	padding: 1.5rem;
+}
+
+.p-3 {
+	padding: 2rem;
+}
+
+.p-4 {
+	padding: 3rem;
+}
+
+.p-5 {
+	padding: 4rem;
+}
+
+.p-left-1 {
+	padding-left: 1rem;
+}
+
+.p-bottom-5 {
+	padding-bottom: 5rem;
+}
