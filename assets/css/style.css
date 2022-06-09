@@ -297,17 +297,6 @@ input[type="file"] {
 	font-weight: 400;
 }
 
-/* let str = `<a class='card' href='#'>
-<span class='mask'></span>
-<div class='mask-hover'></div>
-<div class='overlay'>`;
-str += "<p>" + elemento.titulo + "</p>";
-str += `</div>
-<span class='image'>`;
-str += "<img src= 'assets/img/" + elemento.portada + "' alt='" + elemento.titulo + "' />";
-str += `</span>
-</a>`; */
-
 .card-data-container {
 	border-radius: 0.6rem;
 	background-color: var(--third-color);
@@ -340,4 +329,39 @@ str += `</span>
 #btn-delete {
 	width: 100%;
 	height: 30px;
+}
+
+/* Update */
+#update {
+	padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+#update .flex {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#update input {
+	padding: 5px 10px;
+	height: 30px;
+	width: 100%;
+}
+
+#update input[type=submit] {
+	margin-bottom: 1rem;
+}
+
+#update input[type="text"],
+input[type="number"],
+input[type="file"] {
+	color: var(--primary-text-color);
+	background-color: var(--primary-color);
+	border-bottom: solid var(--primary-text-color) 1px;
+}
+
+#update ::placeholder {
+	color: var(--primary-text-color);
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
 }

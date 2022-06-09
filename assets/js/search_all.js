@@ -33,15 +33,15 @@
 					str += "<p> Genero: " + elemento.genero + "</p>";
 					str += "<p> Precio: " + elemento.precio + "</p>";
 
+					str += "<button id=\"btn-update\" class=\"btn btn-secondary\" onclick=\"window.location.href='update.php?id=" + elemento.id + "'\"><span>Actualizar</span></button>"
 					str += `
-						<button id ="btn-update" class="btn btn-secondary"><span>Actualizar</span></button>
 						<button id ="btn-delete" class="btn btn-secondary"><span>Borrar</span></button>
 						</div>
 						</div>
 					`;
 					cards_display.innerHTML += str;
 				});
-				enable_update_delete_btn();
+				enable_delete_btn();
 			})
 			.catch(error => console.log(error));
 	});

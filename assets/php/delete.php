@@ -3,7 +3,10 @@
 
 	$id = $_POST["id"];
 
-	var_dump($_POST);
+	// $query = $conn->prepare("SELECT portada FROM funciones WHERE id = ".$id);
+	// $query ->execute();
+	// $query = $query->get_result();
+	// unlink($_SERVER["DOCUMENT_ROOT"]."/assets/img/".$query["portada"]);
 
 	$query = $conn->prepare("DELETE FROM funciones WHERE id = ".$id);
     $query ->execute();

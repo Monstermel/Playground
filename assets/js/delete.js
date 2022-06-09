@@ -1,9 +1,7 @@
-function enable_update_delete_btn() {
+function enable_delete_btn() {
 	const card_data_container = document.querySelectorAll('.card-data-container');
 
 	card_data_container.forEach(item => {
-		console.log(item.id);
-		const btn_update = item.querySelector("#btn-update");
 		const btn_delete = item.querySelector("#btn-delete");
 
 		btn_delete.addEventListener('click', () => {
@@ -24,7 +22,6 @@ function enable_update_delete_btn() {
 				window.location.reload();
 			}
 		});
-		btn_update.addEventListener('click', () => { });
 	});
 
 }

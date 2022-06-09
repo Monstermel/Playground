@@ -39,7 +39,7 @@
 	<?php include_once("assets/php/footer.php"); ?>
 
 	<!-- Scripts -->
-	<script src="assets/js/update_delete.js"></script>
+	<script src="assets/js/delete.js"></script>
 	<script src="assets/js/search_all.js"></script>
 	<script src="assets/js/search_name.js"></script>
 </body>
