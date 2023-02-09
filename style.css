@@ -1,0 +1,30 @@
+body {
+	font-family: "Lucida Console", Monaco, Monospace;
+	font-size: 20px;
+	text-align: center;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+}
+
+.main-title {
+	background-color: black;
+	color: white;
+}
+
+.guacamole {
+	color: white;
+	background-color: green;
+}
+
+.bacon {
+	color: white;
+	background-color: brown;
+}
+
+.pork {
+	color: white;
+	background-color: red;
+}
