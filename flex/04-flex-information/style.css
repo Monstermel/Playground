@@ -12,6 +12,26 @@ img {
   font-weight: 900;
 }
 
+/* Solucion */
+
+body {
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 32px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 52px;
+}
+
+.card {
+  max-width: 200px;
+}
+
 /* do not edit this footer */
 .footer {
   position: fixed;
