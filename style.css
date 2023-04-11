@@ -130,3 +130,28 @@ body {
 	font-size: 18px;
 	color: #1F2937;
 }
+
+/* Quote section */
+
+.quote-sect {
+	padding: 100px 500px 100px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	background-color: #E5E7EB;
+}
+
+.quote-sect > .quote-text {
+	font-size: 36px;
+	font-weight: lighter;
+	color: #1F2937;
+	margin: 0;
+}
+
+.quote-sect > .autor-text {
+	font-size: 24px;
+	font-weight: bolder;
+	text-align: right;
+	color: #1F2937;
+	margin: 0;
+}
