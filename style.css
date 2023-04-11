@@ -144,14 +144,16 @@ body {
 .quote-sect > .quote-text {
 	font-size: 36px;
 	font-weight: lighter;
-	color: #1F2937;
-	margin: 0;
 }
 
 .quote-sect > .autor-text {
 	font-size: 24px;
 	font-weight: bolder;
 	text-align: right;
+}
+
+.quote-sect > .quote-text,
+.quote-sect > .autor-text {
 	color: #1F2937;
 	margin: 0;
 }
