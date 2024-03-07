@@ -1,9 +1,15 @@
-syntax = "proto3";
+/*
+  gRPC is a framework for making remote procedure calls (RPC) between different systems.
+  It allows programs written in different languages to communicate with each other over
+  a network efficiently. It uses Protocol Buffers for defining the structure of messages
+  and HTTP/2 for transport, offering features like bidirectional streaming and automatic
+  code generation.
 
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
+  In this example I create a basic service with the option of two differentes calls and the
+  definition of the different messages.
+*/
+
+syntax = "proto3";
 
 package helloworld;
 
