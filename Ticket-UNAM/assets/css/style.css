@@ -1,0 +1,367 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Roboto:ital,wght@1,300&display=swap");
+
+:root {
+	--primary-color: #e6e6e6;
+	--primary-text-color: #000;
+
+	--secondary-color: #2D2D2D;
+	--secondary-text-color: #fff;
+
+	--third-color: #B3B3B3;
+	--fourth-color: #838383;
+	--fifth-color: #565656;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+body {
+	font-family: "Lato", sans-serif;
+	background-color: var(--primary-color);
+	color: var(--primary-text-color);
+	line-height: 1.6;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: var(--primary-text-color)
+}
+
+h1,
+h2 {
+	font-weight: 300;
+	line-height: 1.2;
+	margin: 10px 0;
+}
+
+p {
+	margin: 10px 0;
+}
+
+img {
+	width: 100%;
+}
+
+
+/* Navbar */
+.navbar {
+	box-shadow: rgb(0 0 0 / 15%) 0px 0px 30px;
+	padding: 1rem;
+}
+
+.navbar ul {
+	display: flex;
+}
+
+.navbar a {
+	padding: 0 10px;
+	margin: 0 5px;
+}
+
+.navbar .logo {
+	padding: 0;
+	margin: 0;
+}
+
+.navbar .fa-ticket {
+	margin-right: 0.25em;
+}
+
+.navbar h1 {
+	font-weight: 1000;
+	margin: 0;
+}
+
+.navbar a:not(.logo):hover {
+	border-bottom: 2px var(--primary-text-color) solid;
+}
+
+
+.navbar .flex {
+	justify-content: space-between;
+}
+
+/* Showcase */
+.cards-display {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.card .image {
+	position: absolute;
+	z-index: 0;
+}
+
+.card .mask {
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(to bottom, transparent 45%, black 80%);
+}
+
+.card .mask-hover {
+	position: absolute;
+	z-index: 3;
+	height: 100%;
+	width: 100%;
+	background: transparent;
+}
+
+.card .mask-hover:hover {
+	position: absolute;
+	z-index: 3;
+	height: 100%;
+	width: 100%;
+	background: var(--fifth-color);
+	opacity: 0.4;
+}
+
+.card .overlay {
+	position: absolute;
+	z-index: 2;
+	color: var(--primary-color);
+	font-size: medium;
+	font-weight: 600;
+	width: 100%;
+	height: 40%;
+	bottom: 0px;
+	display: table;
+}
+
+.overlay p {
+	display: table-cell;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0 1rem;
+}
+
+/* Footer */
+footer {
+	background-color: var(--secondary-color);
+	color: var(--secondary-text-color);
+	margin-top: auto;
+	height: 350px;
+	padding-top: 2rem;
+	font-size: x-large;
+	font-weight: 800;
+}
+
+footer .flex {
+	justify-content: space-evenly;
+	align-items: baseline;
+}
+
+footer a {
+	color: var(--secondary-text-color)
+}
+
+#contacto {
+	width: 300px;
+}
+
+#social {
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+#social .fa-ticket {
+	margin-right: 0.25em;
+}
+
+#social .fa-brands {
+	margin: 5px;
+}
+
+#iconos {
+	width: 100%;
+	justify-content: center;
+}
+
+#contact-form {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#contacto input[type=text] {
+	margin-top: 5px;
+}
+
+#contacto input {
+	height: 30px;
+	width: 100%;
+}
+
+#contacto textarea {
+	resize: none;
+	width: 100%;
+	height: 100px;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+	background-color: var(--secondary-color);
+	border-bottom: solid var(--secondary-text-color) 1px;
+	color: var(--secondary-text-color);
+	padding: 5px 10px;
+}
+
+#contacto ::placeholder {
+	color: var(--secondary-text-color);
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* Create */
+
+#create {
+	padding: 2rem 1.5rem 5rem 1.5rem;
+}
+
+#create .flex {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#create input {
+	padding: 5px 10px;
+	height: 30px;
+	width: 100%;
+}
+
+#create input[type="text"],
+input[type="number"],
+input[type="file"] {
+	color: var(--primary-text-color);
+	background-color: var(--primary-color);
+	border-bottom: solid var(--primary-text-color) 1px;
+}
+
+#create ::placeholder {
+	color: var(--primary-text-color);
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* Search */
+#showcase-search h1 {
+	text-align: center;
+}
+
+#showcase-search .container:first-child {
+	max-width: 400px;
+}
+
+#btn-search-all {
+	padding: 5px 10px;
+	height: 30px;
+	width: 100%;
+}
+
+#search-name .flex {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#search-name input {
+	height: 30px;
+	width: 100%;
+}
+
+#search-name input[type="text"] {
+	color: var(--primary-text-color);
+	background-color: var(--primary-color);
+	border-bottom: solid var(--primary-text-color) 1px;
+}
+
+#search-name ::placeholder {
+	color: var(--primary-text-color);
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.card-data-container {
+	border-radius: 0.6rem;
+	background-color: var(--third-color);
+	display: flex;
+	width: 400px;
+	margin: 0.25rem;
+}
+
+.card-data-container .card {
+	margin: 0px;
+}
+
+#data {
+	font-size: medium;
+	font-weight: 600;
+	color: var(--primary-text-color);
+	width: 235.31px;
+	height: 100%;
+	padding: 1rem;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: space-between;
+}
+
+#btn-update {
+	width: 100%;
+	height: 30px;
+}
+
+#btn-delete {
+	width: 100%;
+	height: 30px;
+}
+
+/* Update */
+#update {
+	padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+#update .flex {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#update input {
+	padding: 5px 10px;
+	height: 30px;
+	width: 100%;
+}
+
+#update input[type=submit] {
+	margin-bottom: 1rem;
+}
+
+#update input[type="text"],
+input[type="number"],
+input[type="file"] {
+	color: var(--primary-text-color);
+	background-color: var(--primary-color);
+	border-bottom: solid var(--primary-text-color) 1px;
+}
+
+#update ::placeholder {
+	color: var(--primary-text-color);
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+}
