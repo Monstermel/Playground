@@ -1,0 +1,6 @@
+mTLS (mutual Transport Layer Security) is like a secret handshake for computers. 
+It's a security method used by systems like gRPC to make sure they can trust each 
+other over the internet. With mTLS, both the client and server use digital certificates 
+to verify each other's identity, ensuring that only trusted parties can communicate 
+securely. In simple terms, it's like having a locked door with two keys - both sides 
+need to have the right key to open it, ensuring a safe connection.
